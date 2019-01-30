@@ -1,6 +1,6 @@
 #VUE DOM
 
-## Virture DOM (가상DOM)
+## Virtual DOM (가상DOM)
 * Vue 컴포넌트 트리로 만들어진 VNode 트리
 * 가상 DOM을 생성해서 실제 DOM(HTML DOM)에 붙이는 방식.
 * 실제 DOM의 조작을 줄이기 위함으로, 다시 그려야 하는 요소를 계산하여 성능부하를 최소화함.  
