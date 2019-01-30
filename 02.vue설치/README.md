@@ -6,16 +6,15 @@ NPM(Node Package Manager) 을 사용하기 위해 node.js 우선 설치.
 ##NPM 명령어
 ###vue 2.x 설치
 ```
-npm install vue  //초기
-npm install -g vue-cli //vue command line 
-vue init webpack (or webpack-simple) [project name] //프로젝트 이름으로 폴더생성 + 구조설정
-cd [project name] //프로젝트 이름의 폴더로 이동
-npm install //기본설정 설치
-npm run dev //로컬에서 서버구동
+npm install -g vue-cli    //vue command line interface
+vue init webpack (or webpack-simple) [project name]    //프로젝트 이름으로 폴더생성 + 구조설정
+cd [project name]    //프로젝트 이름의 폴더로 이동
+npm install    //기본설정 설치
+npm run dev    //로컬에서 서버구동
 ```
 ###vue 3.x 설치
 ```
-npm install -g @/vue/cli
+npm install -g @/vue/cli    //vue command line interface
 vue create [project name] 
         or 
 vue ui
