@@ -23,9 +23,11 @@ cd [project name]
 npm run serve //로컬에서 서버구동
 ```
 > vue create시, 아래와 같이 터미널에서 필요한 라이브러리를 선택, 설치할 수 있음.  
+
 ![vue3 install](../images/vue3_install.png)  
 
 > vue ui로 설치시 아래와 같이 브라우저에서 프로젝트 생성가능.
+
 ![vue3 ui](../images/vue3_ui.png)  
 
 \* *[참고]직접 `<script></script>`에 추가하여 특정페이지에 부분적용 가능.*
