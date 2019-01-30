@@ -4,6 +4,7 @@
 
 ##특징
 vue는 Angular와 React의 몇가지의 특징을 착안하여 만들어진 언어.  
+
 * Angular  
     * data binding간의 데이터는 양방향(2way) 통신을 함.  
 * React  
