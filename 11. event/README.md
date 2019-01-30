@@ -39,8 +39,6 @@
 * Local
 * props 속성
 
-##SLOT
-
 ##EVENT
 * v-click
 * 키보드 수식어
@@ -48,6 +46,11 @@
 
 
 ##STYLE
+
+##SLOT
+
+##AXIOS
+* promise
 
 ##ROUTER
 * 선언방법
@@ -74,9 +77,6 @@
 * actions
     * dispatch
 * getters
-
-##AXIOS
-* promise
 
 
 ##VUE와 ES6
