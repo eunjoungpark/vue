@@ -2,7 +2,7 @@
 
 new Vue 생성자를 통해, 화면 단위로 사용될 data 및 함수, 라이프사이클 등을 정의 함.  
 
-\* 주의 : data : function(){ return {}} 와 같이 data 속성을 정의 하지않으면, 모든 컴포넌트에서 데이터 조작이 가능해지므로 해당 컴포넌트의 스코프로 지정해야 함.
+*\* 주의 : data : function(){ return {}} 와 같이 data 속성을 정의하지 않으면, 모든 컴포넌트에서 데이터 조작이 가능해지므로 해당 컴포넌트의 스코프로 지정해야 함.*
 
 ```javascript
 var vm = new Vue({
@@ -34,3 +34,10 @@ var vm = new Vue({
     //something to do...
 });
 ```
+
+##반응성 주입
+data에 정의된, 모든 속성들은 Object.defineProperty를 사용하여 getter/setter로 변환.  
+(Object.defineProperty는 ES5속성으로 IE8에서 지원되지 않음.)  
+즉, data속성을 수시로 감지할 수 있는 watcher가 붙어 변경 시, 컴포넌트가 다시 렌더링 됨.  
+![반응성](../images/reactivity.png)  
+[자세히알기](https://vuejs.org/v2/guide/reactivity.html)
