@@ -47,9 +47,8 @@ npm run dev
 ###VUE3.x
 * 작업도중 필요한 도구를 플러그인 형식으로 추가할 수 있음.
 * 프로젝트 설치 GUI를 제공
-* vue-router 와 vuex 라이브러리를 추가설치 시, 명령어 변경됨.
+* 라이브러리 설치
 ```
-    //vue3.x
     vue add router
     vue add vuex
 ```
@@ -57,5 +56,5 @@ npm run dev
 ```
     npm run serve
 ```
-* 웹팩설정 파일(~~webpack.config.js~~)노출이 안되고, **vue.config.js**에 선언.
+* 웹팩설정 파일(~~webpack.config.js~~)이 vue3에서는 노출이 안되고, **vue.config.js**에 선언.
 (작성방식은 동일. [자세히 알기](https://cli.vuejs.org/guide/webpack.html#simple-configuration))

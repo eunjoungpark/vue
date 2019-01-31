@@ -15,7 +15,7 @@ MVVM 패턴의 뷰모델(ViewModel) 레이어에 해당하는 화면(view)단 �
         * data binding간의 데이터는 양방향(2way) 통신을 함.  
     * React  
         * component간의 통신은 단방향(1way) 통신을 함.  
-        * Virtual Dom 렌더링 [자세히 알아보기](../05.vue_dom/)  
+        * Virtual DOM 렌더링 [자세히 알아보기](../05.vue_dom/)  
 
 
 ##MVVM(Model - View - ViewModel) 이란?
