@@ -21,31 +21,41 @@ vue ui
 cd [project name]
 npm run serve //로컬에서 서버구동
 ```
-> vue create시, 아래와 같이 터미널에서 필요한 라이브러리를 선택, 설치할 수 있음.  
+> **vue create**시, 아래와 같이 터미널에서 필요한 라이브러리를 선택, 설치할 수 있음.  
 
 ![vue3 install](../images/vue3_install.png)  
 
-> vue ui로 설치시 아래와 같이 브라우저에서 프로젝트 생성가능.
+> **vue ui**로 설치시 아래와 같이 브라우저에서 프로젝트 생성가능.
 
 ![vue3 ui](../images/vue3_ui.png)  
 
 \* *[참고]직접 `<script></script>`에 추가하여 특정페이지에 부분적용 가능.*
 
 ## VUE2와 VUE3 차이점
-* vue3는 프로젝트 설치 GUI를 제공
+###VUE2.x
+* VUE2는 작업도중 필요한 도구를 추가할 경우 처음부터 다시 세팅해야 함.
+* 라이브러리 설치 
+```
+npm install --save vue-router
+npm install --save vuex
+```
+* 개발서버 구동
+```
+npm run dev
+```
+
+###VUE3.x
+* 작업도중 필요한 도구를 플러그인 형식으로 추가할 수 있음.
+* 프로젝트 설치 GUI를 제공
 * vue-router 와 vuex 라이브러리를 추가설치 시, 명령어 변경됨.
 ```
-    //vue2.x
-    npm install --save vue-router
-    npm install --save vuex
-
     //vue3.x
     vue add router
     vue add vuex
 ```
-* 개발서버 구동 명령어 변경
+* 개발서버 구동
 ```
     npm run serve
 ```
-* ~~webpack.config.js~~ 파일이 vue3에서는 사라지고, **vue.config.js**에 선언.  
-(작성방식은 동일)
+* 웹팩설정 파일(~~webpack.config.js~~)노출이 안되고, **vue.config.js**에 선언.
+(작성방식은 동일. [자세히 알기](https://cli.vuejs.org/guide/webpack.html#simple-configuration))
