@@ -1,90 +1,36 @@
-#VUE 소개
+#VUE INSTANCE
 
-##VUE 설치
+new Vue 생성자를 통해, 화면 단위로 사용될 data 및 함수, 라이프사이클 등을 정의 함.  
 
-* NPM 명령어
-* VUE2와 VUE3 차이점
+\* 주의 : data : function(){ return {}} 와 같이 data 속성을 정의 하지않으면, 모든 컴포넌트에서 데이터 조작이 가능해지므로 해당 컴포넌트의 스코프로 지정해야 함.
 
-##VUE 구조
-* template
-* script
-* style
+```javascript
+var vm = new Vue({
+    data : function(){
+        return {
+            message : 'hi'
+        }
+    },
+    components : {
 
-##DIRECTIVE
-* v-text, v-html
-* v-bind
-* v-model
-* v-show, v-if, v-else, v-else-if
-* v-for
-
-##INSTANCE
-* new Vue()
-
-##VUE DOM
-* Virture DOM
-* render 함수
-
-##VUE 라이프사이클(LIFECYCLE)
-
-##Template Syntax
-
-* Mothods
-* Computed
-* Watch
-* Filter
-
-##COMPONENT
-
-* Global
-* Local
-* props 속성
-
-##EVENT
-* v-click
-* 키보드 수식어
-* 마우스 수식어
-
-
-##STYLE
-
-##SLOT
-
-##AXIOS
-* promise
-
-##ROUTER
-* 선언방법
-```html
-<router-view></router-view>
-<router-link></router-link>
-``` 
-* path정의
-    * 하위 path 정의
-* name 속성
-* parameter
-    * params
-    * query
-* 라우터 인스턴스
-* 멀티 라우터 뷰
-* 리다이렉트
-* 기타 고급기법
-
-##VUEX
-* 선언방법
-* state
-* mutations
-    * commit
-* actions
-    * dispatch
-* getters
-
-
-##VUE와 ES6
-* let 과 const
-* arrow function
-* 객체 리터럴
-* 스프레드 오퍼레이터
-* 템플릿 리터럴
-* 디스트럭처링
-* import & export
-* async & await
+    },
+    methods : {
+        welcome : function(){
+            console.log(this.message);
+        }
+    },
+    computed : {
+        hi : function(){
+            return this.message;
+        }
+    },
+    watch:{
+        message : function(value){
+            this.message = value + " world!!";
+        }
+    },
+    created : function(){},
+    mounted : function(){}
+    //something to do...
+});
+```
