@@ -16,6 +16,7 @@ MVVM 패턴의 뷰모델(ViewModel) 레이어에 해당하는 화면(view)단 �
     * React  
         * component간의 통신은 단방향(1way) 통신을 함.  
         * Virtual DOM 렌더링 [자세히 알아보기](../05.vue_dom/)  
+        * computed와 watch 를 제공하지 않음.
 
 
 ##MVVM(Model - View - ViewModel) 이란?

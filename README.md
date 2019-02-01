@@ -90,3 +90,29 @@
 * 디스트럭처링
 * import & export
 * async & await
+
+
+
+
+##webpack
+WEBPACK
+
+1. 역할 : 웹 자원(플러그인)들의 관계를 정립(관리)하여, js, css, image 들을 최적화해주는 모듈번들러 역할을 함.
+2. 기본적으로 필요한 기능을 gulp, grunt에서는 설치&추가하였던 부분을 webpack자체에서 지원해줌.
+3. 기존 javascript 작성방식 문제
+	- 전역변수 충돌
+	- 로딩순서
+	- 복잡성으로 및 재사용을 위한 관리
+4. webpack 4.*으로 버전업되면서 npm install webpack-cli -g 로 설치되게끔 바뀜.
+(기존명령어 : npm install webpack)
+
+5. lodash : 라이브러리
+
+6. 간단한 번들링 명령어 
+webpack [번들대상] [번들결과 파일명]
+
+예) webpack app/index.js dist/bundle.js
+
+7. require로 모듈을 가져올 경우, npm install [module name] --save로만 설치가능.
+require없이 사용하고자 한다면 -g로 설치.
+
