@@ -10,7 +10,6 @@
 * v-pre
 * v-cloak
 * v-once
-
 ```html
 <template>
     <div>
@@ -41,9 +40,36 @@
         <!-- 이벤트를 사용할때, v-on를 사용. 약어는 @ -->
         <!-- 키보드 및 마우스 이벤트 모두 정의 가능 -->
         <!-- 이벤트의 수식어를 사용할 수 있음. -->
+        <!-- 사용자 이벤트를 호출할 수 있음. -->
         <button v-on:click="message()"></button>
         <button @click="message()"></button> <!-- //약어사용-->
         <button v-on:click.prevent="message()"></button>
+        <button v-on:message="getMessage()"></button>
+
+        <!-- data속성에 바인딩함. 또는 하위 컴포넌트에 데이터를 전달할 때 사용, 약어는 : -->
+        <div v-bind:class="classes">{{msg}}</div>
+        <div :class="classes">{{msg}}</div>
+
+        <!-- form 요소(input, select, textarea)와 components에 사용되며, data를 양방향으로 서로 주고받음. -->
+        <input type="text" v-model="value" />
+
+        <!-- 이 엘리먼트와 모든 자식 엘리먼트에 대한 컴파일을 건너 뜀 -->
+        <div v-pre> {{이 부분은 컴파일 되지 않습니다}} </div>
+
+        <!-- v-cloak은 어떠한 css 스타일을 정의되었을 때, Vue인스턴스가 컴파일이 완료되기 전까지만
+        v-cloak를 처리함. 그 이후에는 해지됨. -->
+        <!--// css -->
+        [v-cloak] {
+            display:none;
+        }
+        <div v-cloak></div>
+
+        <!-- v-once는 한번만 렌더링됨. 추후 변경사항에 대한 반영이 되지 않음. -->
+        <!-- 아래예제에서 pineapple값을 추가하여도, 목록에 추가되지 않음. -->
+        <ul>
+            <li v-for="fruit in fruits" v-once>{{fruit}}</li>
+        </ul>
+        <button @click="appFruit()">Click</button>
     </div>
 </template>
 ```
@@ -55,12 +81,21 @@ export default {
             ok : true,
             who : 'girl', //or 'boy' or 'dog'
             fruits : ['apple', 'banana', 'orange'],
+            classes : {bg : false, colorRed:true},
+            value : 'ID를 입력하세요.'
         }
     },
     methods : {
         message : function(){
             alert(this.msg);
+        },
+        appFruit (){
+        this.fruits.push('pineapple');
         }
     }
 }
+```
+```css
+.bg {background-color:blue}
+.colorRed {color:red}
 ```
