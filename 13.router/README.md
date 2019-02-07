@@ -43,10 +43,10 @@ router에 설정한 컴포넌트와 매칭되는 URL일 경우, <router-view></r
 
 ## <router-link>속성
 * exact
-메인화면의 경우, \<a href="/">Main\</a> 와 같은 경로를 갖는데, 다른 서브페이의 경로에도 '/' 문자가 포함되어  
+메인화면의 경우, <a href="/">Main</a> 와 같은 경로를 갖는데, 다른 서브페이의 경로에도 '/' 문자가 포함되어  
 정확한 '/' 경로를 구분하지 못함. 이때 사용하는 것이 **exact** 속성임.  
 * tag="li"
-\<router-link>로 작성하고, 브라우저상에서는 \<li>로 렌더링 하고자 할때 사용.  
+<router-link>로 작성하고, 브라우저상에서는 <li>로 렌더링 하고자 할때 사용.  
 * to="path"
 이동하고자 하는 경로.  
 * active-class="class name"
@@ -121,10 +121,10 @@ export default {
 <router-link :to="{name : [name], query:{locale : 'ko', q:100}}"></router-link>
 ```
 ##Multiple Router Views
-현재 페이지가 'home'일때 \<router-view name="header-top">\</router-view> 영역에 'Header'컴포넌트가   
-보여지고, \<router-view name="header-bottom">\</router-view>는 화면에 노출되지 않음.  
-반대로, 'user'에 진입하면 \<router-view name="header-top">\</router-view>는 화면에 보이지않고  
-\<router-view name="header-bottom">\</router-view>가 화면에 보여짐.
+현재 페이지가 'home'일때 <router-view name="header-top"></router-view> 영역에 'Header'컴포넌트가   
+보여지고, <router-view name="header-bottom"></router-view>는 화면에 노출되지 않음.  
+반대로, 'user'에 진입하면 \<router-view name="header-top"></router-view>는 화면에 보이지않고  
+<router-view name="header-bottom"></router-view>가 화면에 보여짐.
 ```html
 <router-view name="header-top"></router-view>
 <router-view></router-view>
