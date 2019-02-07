@@ -1,121 +1,162 @@
-##ROUTER
-* 선언방법
-```html
-<router-view></router-view>
-<router-link></router-link>
-``` 
-* path정의
-    * 하위 path 정의
-* name 속성
-* parameter
-    * params
-    * query
-* 라우터 인스턴스
-* 멀티 라우터 뷰
-* 리다이렉트
-* 기타 고급기법
+#ROUTER
+vue.js 공식 라우터  
 
-//////////////////////////////////////////////////////////////////////
-1. 정의방법
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+##추가방법
 
-Vue.use(VueRouter);
+```javascript
+// main.js
+import Vue from 'vue'
+import App from './App.vue'
+import VueRouter from 'vue-router'; // vue-router를 
+Vue.use(VueRouter);                 // vue에 추가.
+
+import appMain from './compoenets/app-main.vue';
 
 const router = new VueRouter({
-	mode : 'history',
+	mode : 'history', //기본 해시모드에서, 해시를 제거.
 	routes : [
-		{path : '', component : '', name : ''}
+		{path : '경로', component : '컴포넌트명', name : '별칭'}, //라우터 상세 설정.
+		{path : '/main', component : appMain} //name 속성은 선택 값.
 	]
 });
 
-render함수에 router 정의.
+new Vue({
+  el: '#app',
+  router,   //상단에서 선언한 변수를 vue 인스턴스에 추가.
+  render: h => h(App)
+})
+```
 
+```html
+//template
 
-2. router path 정의
-	└ 파라미터 : to="/user/:id"   =>  /user/[something]
+//화면표시
+<router-view></router-view>
 
+//네비게이션 구성
+<ul>
+	<router-link tag="li" to="/" active-class="[class name]" exact><a>Home</a></router-link>
+	<router-link tag="li" to="/intro" active-class="[class name]"><a>Intro</a></router-link>
+</ul>
+``` 
+router에 설정한 컴포넌트와 매칭되는 URL일 경우, <router-view></router-view>에, 해당 컴포넌트 화면이 노출됨.  
 
-3. navication : <router-link></router-link>
-	└ 정확인 주소와 매칭 속성 : exact
-	└ 명시는 <router-link>로 하고 렌더링은 <li> 할때 : tag="li"
-	└ path 정의 : to="path"
-	└ 활성화 class 정의 : active-class="class name"
+## \<router-link>속성
+* exact
+메인화면의 경우, \<a href="/">Main\</a> 와 같은 경로를 갖는데, 다른 서브페이의 경로에도 '/' 문자가 포함되어  
+정확한 '/' 경로를 구분하지 못함. 이때 사용하는 것이 **exact** 속성임.  
+* tag="li"
+\<router-link>로 작성하고, 브라우저상에서는 \<li>로 렌더링 하고자 할때 사용.  
+* to="path"
+이동하고자 하는 경로.  
+* active-class="class name"
+해당 메뉴의 활성화 class를 정의.  
 
+##동적 라우트 매칭
+```javascript
+{path:'/user/:id' ...}
+// 예)
+// '/user/[something]'
+// '/user/123'
+// '/user/foo'
+// '/user/bar'
+```
 
+##하위(중첩) 라우터 정의
+```javascript
+//특정 컴포넌트의 하위 라우터를 children 속성에 배열로 선언.
+{path : '/user', component : 'user', children : [
+	//user 컴포넌트에 <router-view> 에 출력됨.
+	{path : '/foo', component : 'userFoo'},
+	{path : '/bar', component : 'userBar'}
+]};
+```
+##name 속성
+router 설정에서 component 별칭을 지정할 수 있음.  
+<router-link :to="{name : 'home'}"></router-link>
 
-4. content : <router-view></router-view>
-   노출하고 싶은 영역을 알려주는 역할로, 해당 태그가 지정된 영역에 화면이 표시됨.
+```javascript
+//router
+{path : '/', name : 'home', components : Home}
 
-
-5. 자바스크립트 지원
-	└ 특정페이지로 이동 : this.$router.push('/);
-	└ └ Name 으로 이동 : this.$router.push({name : 'home'});
-	└ 파라미터값 출력() :
-		(단, id값이 변경되면 값이 업데이트 되지 않음.)
-		data(){
-			return {
-				id : this.$route.params.id
-			}
+//component(.vue)
+export default {
+	data (){
+		return{}
+	},
+	methods : {
+		clickFunc (){
+			this.$router.push({name : 'home'}); //home으로 이동
 		}
+	}
+}
+```
 
-	└ 파라미터값 출력2 : 
-		(업데이트 되기 위한 방법으로 watch로 감시를 걸어놓음.)
-		watch:{
-			'$route'(to, from){
-				this.id = to.params.id
-			}
+##컴포넌트 내부에서 라우터제어
+```javascript
+//main.js에서 router를 주입하였기 때문에
+//this.$router.parmas.id
+//this.$router.query.plan
+//this.$router.push() 와 같이 접근가능.
+export default {
+	data(){
+		return {
+			id : this.$route.params.id //단, id값이 변경되면 값이 업데이트 되지 않음.
 		}
+	},
+	watch:{
+		'$route'(to, from){ //이를 해결하기 위해 watch를 붙여야 함.
+			this.id = to.params.id
+		}
+	}
+}
+```
 
-6. 하위 컴포넌트 정의
-	아래와 같이 특정 뎁스에서 하위 뎁스를 children으로 정의할 수 있음.
-	{path : '', component : '', children : [
-		{path : '', component : ''},
-		{path : '', component : ''}
-	]};
-
-7. name 속성으로 이동
-router 설정에서 component name을 지정하고
-<router-link :to="{name : [name]}"></router-link> 태그에
-name과 parameter를 설정할 수 있음.
-
-
-8. params 속성으로 이동
+##Parameter
+```html
+//params 속성
 <router-link :to="{name : [name], params : {id : $route.params.id}}"></router-link>
 
+//query 속성 사용.
+<router-link :to="{name : [name], query:{locale : 'ko', q:100}}"></router-link>
+```
+##Multiple Router Views
+현재 페이지가 'home'일때 \<router-view name="header-top">\</router-view> 영역에 'Header'컴포넌트가   
+보여지고, \<router-view name="header-bottom">\</router-view>는 화면에 노출되지 않음.  
+반대로, 'user'에 진입하면 \<router-view name="header-top">\</router-view>는 화면에 보이지않고  
+\<router-view name="header-bottom">\</router-view>가 화면에 보여짐.
+```html
+<router-view name="header-top"></router-view>
+<router-view></router-view>
+<router-view name="header-bottom"></router-view>
+```
+```javascript
+//router
+{path : '/', name : 'home', components : {
+	default : Home,
+	'header-top' : Header
+}},
+{path : '/user', components : {
+	default : User,
+	'header-bottom' : Header
+}}
+```
 
-9. query 속성 사용.
-<router-link :to="{name : [name], params : {id : $route.params.id}, query:{locale : 'ko', q:100}}"></router-link>
-
-
-10. Multiple Router Views
-	//html
-	<router-view name="header-top"></router-view>
-	<router-view></router-view>
-	<router-view name="header-bottom"></router-view>
-
-	//router
-	{path : '/', name : 'home', components : {
-        default : Home,
-        'header-top' : Header
-    }}
-
-
-11. 리다이렉트
+##리다이렉트
 {path : '/redirect-me', redirect : {name : 'home'}}
 {path : '*', redirect : '/'}
 
-12. 기타
-- 페이지전환 애니메이션
-- hash값(페이지 이동) 무시
-- 페이지전환 높이설정 가능.
-- router.beforeEch((to, from, next)=>{});
-- router.beforeEnter((to, from, next)=>{});
-- router.beforeLeave((to, from, next)=>{});
-- 컴포넌트 안에서 사용 할때
-	- beforeRouteEnter(to, from, next){}
-	- beforeRouteLeave(to, from, next){}
-- 지연된 로딩 대처 : 코드분할()
+##기타 고급기법
+* 페이지전환 애니메이션
+* hash값(페이지 이동) 무시
+* 페이지전환 높이설정 가능.
+* router.beforeEch((to, from, next)=>{});
+* router.beforeEnter((to, from, next)=>{});
+* router.beforeLeave((to, from, next)=>{});
+* 컴포넌트 안에서 사용 할때
+	* beforeRouteEnter(to, from, next){}
+	* beforeRouteLeave(to, from, next){}
+* 지연된 로딩 대처 : 코드분할()
 
 
 
