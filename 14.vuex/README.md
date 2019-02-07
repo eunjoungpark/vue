@@ -1,21 +1,206 @@
-vue 
+#vuex
+상태관리를 위한 라이브러리. 데이터의 변경사항을 추적하고 관리해주는 도구.
+
+##vuex 주요기술
+기존에 컴포넌트 내부에서 작성했던 영역을 vuex의 각 기술과 아래와 같이 매칭해볼 수 있음.  
+이 기술을 사용하게 되면, 각 컴포넌트에 기술했던 메소드들을 store에 기술하여 관리하게 됨.  
+* state (data)
+* mutations (methods)
+* actions (methods - 비동기처리)
+* getters (computed)
+
+#설치
+```
+//vue 2.x
+npm install vuex
+
+//vue 3.x
+vue add vuex
+```
+##사용방법
+```javascript
+//main.js
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+
+const store = new Vuex.Store({
+  state: {
+
+  },
+  mutations: {
+
+  },
+  actions: {
+
+  },
+  getters: {
+
+  }
+})
+
+new Vue({
+  el: '#app',
+  store,
+  render: h => h(App)
+})
+```
+
+##state
+사용할 변수(data 속성)를 미리 기술하여, 관리대상에 포함시켜 놓음.  
+즉, state 영역에 항상 변경된 값을 저장해야 됨.  
+
+##mutations
+state의 속성들을 유일하게 변경할 수 있는 영역으로, 컴포넌트 내부나 actions, getters에서  
+바로 data를 변경하는 것을 금지함.  즉, 상태변화 추적을 위한 영역.  
+컴포넌트나 다른 영역에서 mutations에 정의된 메소드를 호출할 경우 **commit** 을 사용.  
+```javascript
+//store에서 mutations 호출
+state : {
+	message : 'hello'
+},
+mutations: {
+	introMsg (state, msg){
+		state.message = msg;
+	}
+},
+actions: {
+	callMsg ({commit, dispatch}, message){
+		commit('introMsg', message);
+		dispatch('richMsg', message)
+	},
+	richMsg ({commit}, message){
+		commit('introMsg', message+' world!');
+	}
+}
+```
+
+```javascript
+//component 내부에서 mutations 호출
+<template>
+<div>
+	<button @click="hi()"></button>
+</div>
+</template>
+
+<script>
+	...
+methods : {
+	hi(){
+		this.$store.commit('introMsg', 'Hello World!!')
+	}
+}	
+	...
+</script>
+```
+
+##actions
+비동기처리를 위한 메소드정의 영역으로 setTimeout()이나 http 통신 처리와 같이 결과를 받아올 타이밍이 예측되지 않은 로직을 정의.  
+state값을 바로 접근할 수 없고, mutations에 data를 전달하여 mutations에서 변경하도록 해야 함.  
+다른 actions 메소드나 외부에서 actions메소드를 호출할 때는 **dispatch** 를 사용.
+
+컴포넌트 영역에서 mutations를 매핑하여 사용하는 방법.
+
 	=> actions에 정의된 메소드를 dispath로 호출 
 	=> mutations에 정의된 메소드를 commit로 호출
-store > state => data
-store > mutations (methods 에 정의)
-	=> state 값을 변경하기 위한 역할 (상태변화를 추적하는데 주안점을 둠.)
-	=> state 값을 동기적으로 변경하기 위해 commit을 사용 (commit은 외부에서 사용하는 것임.)
-	=> commit 대신에, 컴포넌트의 메소드를 mapping하여 사용할수 있음(mapMutations)
-	=> actions으로 받은 data를 state에 정의 (actions에서 정의한 이름으로 값정의)
-store > actions 
-	=> 비동기 mutations 로직을 위한 역할
-	=> setTimeout() 이나 서버와의 http 통신 처리 같이 결과를 받아올 타이밍이 예측되지 않은 로직은 Actions 에 선언
-	=> 메소드를 선언 (vue에서 사용할 메소드 이름)
-	=> commit으로 mutation(사용될 이름을 정의)에 값을 전달(상태변화를 관리하기 위해 mutations를 이용)
-	=> action에 정의된 메소드를 dispath로 호출
-store > getters (computed 에 정의)
-	=> state값을 받아오기 위한 역할
-	=> 컴포넌트 내부의 computed에 mapGetters를 정의하여 사용할 수 있음.
-	=> getters에 정의한 메소드를 호출할 때는 직접 호출할수 있음 ( this.$store.getters.정의된메소드) 
-	=> 단, 컴포넌트의 다른 computed 정의와 같이 사용하기 위해 ...mapGetters로 정의필요.
-	=> ...mapGetters 이 ...문법은 es6이므로 babel stage-2와 babel preset이 필요.
+
+##getters
+computed 와 같은 역할을 대체할 수 있음.
+```javascript
+  //store
+  stage : {
+	  message : 'hello'
+  },
+  getters: {
+	returnMsg (state){
+		return state.message;
+	}
+  }
+})
+```
+```html
+//component
+<template>
+	<p>{{message}}</p>
+</template>
+```
+```javascript
+//component
+computed : {
+	message (){
+		this.$store.getters.returnMsg;
+	}
+}
+```
+
+##Helper함수
+helper함수를 이용해 component 내부에서 vuex를 쉽게 사용할 수 있음. (store 속성들을 내부 메서드 처럼 사용가능)  
+* mapState
+* mapGetters
+* mapMutations
+* mapActions
+
+```javascript
+state: {
+	todolist : ['abcd']
+},
+getters: {
+	todoAll (state){
+		return state.todolist;
+	}
+},
+mutations: {
+	addTodo(state, todo){
+		state.todolist.push(todo);
+	},
+	delTodo(state, delIdx){
+		state.todolist.splice(delIdx,1);
+	}
+}
+```
+```html
+<template>
+<ul>
+	<li v-for="(todo, index) in this.todolist" :key="index">{{todo}} <button @click.prevent="delTodo(index)">delete</button></li>
+</ul>
+</template>
+```
+```javascript
+//component
+import {mapState, mapGetters, mapMutations} from 'vuex';
+export default {
+  computed : {
+    ...mapState({ //computed에 state 헬퍼함수도 적용가능.
+      todolist : 'todolist'
+    }),
+    ...mapGetters({
+      todolist : 'todoAll'
+    })
+  },
+  methods : {
+    ...mapMutations({
+        delTodo: 'delTodo'
+    })
+  }
+}
+```
+**[주의]**
+여기서 스프레드 오퍼레이터(...) 문법을 사용하였는데, 이는 ES6 문법으로 사용할 경우 babel preset이 필요함.  
+스프레드 오퍼레이터를 사용하는 이유는,  
+아래와 같이 스프레드 오퍼레이터 문법을 사용하지 않고 헬퍼함수를 바로 정의할 수 있지만, 
+추가 메소드를 정의할 수 없는 단점이 있음.  
+```javascript
+//component
+import {mapGetters, mapMutations} from 'vuex';
+export default {
+  computed : mapGetters({
+      todolist : 'todoAll'
+  }),
+  methods : {
+    ...mapMutations({
+        delTodo: 'delTodo'
+    })
+  }
+}
+```

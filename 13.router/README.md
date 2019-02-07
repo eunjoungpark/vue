@@ -1,8 +1,16 @@
 #ROUTER
 vue.js 공식 라우터  
 
-##추가방법
+#설치
+```
+//vue 2.x
+npm install vue-router
 
+//vue 3.x
+vue add router
+```
+
+##추가방법
 ```javascript
 // main.js
 import Vue from 'vue'
