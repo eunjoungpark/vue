@@ -4,6 +4,7 @@
 ##vuex 주요기술
 기존에 컴포넌트 내부에서 작성했던 영역을 vuex의 각 기술과 아래와 같이 매칭해볼 수 있음.  
 이 기술을 사용하게 되면, 각 컴포넌트에 기술했던 메소드들을 store에 기술하여 관리하게 됨.  
+
 * state (data)
 * mutations (methods)
 * actions (methods - 비동기처리)
@@ -100,11 +101,6 @@ methods : {
 state값을 바로 접근할 수 없고, mutations에 data를 전달하여 mutations에서 변경하도록 해야 함.  
 다른 actions 메소드나 외부에서 actions메소드를 호출할 때는 **dispatch** 를 사용.
 
-컴포넌트 영역에서 mutations를 매핑하여 사용하는 방법.
-
-	=> actions에 정의된 메소드를 dispath로 호출 
-	=> mutations에 정의된 메소드를 commit로 호출
-
 ##getters
 computed 와 같은 역할을 대체할 수 있음.
 ```javascript
@@ -136,6 +132,7 @@ computed : {
 
 ##Helper함수
 helper함수를 이용해 component 내부에서 vuex를 쉽게 사용할 수 있음. (store 속성들을 내부 메서드 처럼 사용가능)  
+
 * mapState
 * mapGetters
 * mapMutations
