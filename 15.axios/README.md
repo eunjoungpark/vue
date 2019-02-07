@@ -1,90 +1,46 @@
-#VUE 소개
+#AXIOS
+vue에는 vue-resource라는 ajax를 지원하는 라이브러리가 제공되었지만, 현재는 관리되고 있지 않으며  
+axios(타사 HTTP 클라이언트 라이브러리) 를 사용할 것을 권장하고 있음.  
+axios는 promise 기반임.
 
-##VUE 설치
+##설치
+```
+npm install axios --save
+```
 
-* NPM 명령어
-* VUE2와 VUE3 차이점
+##사용방법
+```javascript
+import axios from 'axios';
 
-##VUE 구조
-* template
-* script
-* style
+methods : {
+    fetchData (){
+        axios.post('').then(function(response){
+            //정상 처리됐을 경우
+            console.log(response);
+        }).catch(function(error){
+            //비정상 처리됐을 경우
+            console.log(error);
+        });
+    }
+}
+```
 
-##DIRECTIVE
-* v-text, v-html
-* v-bind
-* v-model
-* v-show, v-if, v-else, v-else-if
-* v-for
+##기본값 설정
+###글로벌 설정
+```javascript
+axios.defaults.baseURL = 'https://api.example.com'
+axios.defaults.headers.common['Author'] = 'park'
+axios.defaults.headers.get['Accept'] = 'application/json'
+```
+###사용자 설정
+```javascript
+//여러개의 서로 다른 baseURL을 정의할 때 사용.
+const instance = axios.create({
+  baseURL: 'https://api.example.com'
+})
+instance.defaults.headers.common['Author'] = 'park'
+//baseURL을 지정하여 도메인(공통영역)을 생략할 수 있음.
+instance.get('/user.json').then(...).catch(...);
+```
 
-##INSTANCE
-* new Vue()
-
-##VUE DOM
-* Virture DOM
-* render 함수
-
-##VUE 라이프사이클(LIFECYCLE)
-
-##Template Syntax
-
-* Mothods
-* Computed
-* Watch
-* Filter
-
-##COMPONENT
-
-* Global
-* Local
-* props 속성
-
-##EVENT
-* v-click
-* 키보드 수식어
-* 마우스 수식어
-
-
-##STYLE
-
-##SLOT
-
-##AXIOS
-* promise
-
-##ROUTER
-* 선언방법
-```html
-<router-view></router-view>
-<router-link></router-link>
-``` 
-* path정의
-    * 하위 path 정의
-* name 속성
-* parameter
-    * params
-    * query
-* 라우터 인스턴스
-* 멀티 라우터 뷰
-* 리다이렉트
-* 기타 고급기법
-
-##VUEX
-* 선언방법
-* state
-* mutations
-    * commit
-* actions
-    * dispatch
-* getters
-
-
-##VUE와 ES6
-* let 과 const
-* arrow function
-* 객체 리터럴
-* 스프레드 오퍼레이터
-* 템플릿 리터럴
-* 디스트럭처링
-* import & export
-* async & await
+[axios 자세히보기](https://github.com/axios/axios)

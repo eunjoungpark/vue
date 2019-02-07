@@ -10,7 +10,7 @@
 * actions (methods - 비동기처리)
 * getters (computed)
 
-#설치
+##설치
 ```
 //vue 2.x
 npm install vuex
