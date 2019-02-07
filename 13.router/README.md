@@ -41,7 +41,7 @@ new Vue({
 ``` 
 router에 설정한 컴포넌트와 매칭되는 URL일 경우, <router-view></router-view>에, 해당 컴포넌트 화면이 노출됨.  
 
-## \<router-link>속성
+## <router-link>속성
 * exact
 메인화면의 경우, \<a href="/">Main\</a> 와 같은 경로를 갖는데, 다른 서브페이의 경로에도 '/' 문자가 포함되어  
 정확한 '/' 경로를 구분하지 못함. 이때 사용하는 것이 **exact** 속성임.  
