@@ -1,90 +1,16 @@
-#VUE 소개
+#Vue Loader
 
-##VUE 설치
+.vue 형태의 파일을 javascript 모듈 형태로 변환해주는 webpack loader.  
 
-* NPM 명령어
-* VUE2와 VUE3 차이점
-
-##VUE 구조
-* template
-* script
-* style
-
-##DIRECTIVE
-* v-text, v-html
-* v-bind
-* v-model
-* v-show, v-if, v-else, v-else-if
-* v-for
-
-##INSTANCE
-* new Vue()
-
-##VUE DOM
-* Virture DOM
-* render 함수
-
-##VUE 라이프사이클(LIFECYCLE)
-
-##Template Syntax
-
-* Mothods
-* Computed
-* Watch
-* Filter
-
-##COMPONENT
-
-* Global
-* Local
-* props 속성
-
-##EVENT
-* v-click
-* 키보드 수식어
-* 마우스 수식어
+##vue-loader 기능들
+* ES6지원
+* <style>, <template> 에 각각에 다른 webpack 로더를 지원.
+* 각 .vue 컴포넌트 스코프의 css 스타일링 지원
+* webpack의 모듈 번들링 지원과 의존성 괸리 제공.
+* 개발 시 Hot Reloading 지원.
 
 
-##STYLE
 
-##SLOT
-
-##AXIOS
-* promise
-
-##ROUTER
-* 선언방법
-```html
-<router-view></router-view>
-<router-link></router-link>
-``` 
-* path정의
-    * 하위 path 정의
-* name 속성
-* parameter
-    * params
-    * query
-* 라우터 인스턴스
-* 멀티 라우터 뷰
-* 리다이렉트
-* 기타 고급기법
-
-##VUEX
-* 선언방법
-* state
-* mutations
-    * commit
-* actions
-    * dispatch
-* getters
-
-
-##VUE와 ES6
-* let 과 const
-* arrow function
-* 객체 리터럴
-* 스프레드 오퍼레이터
-* 템플릿 리터럴
-* 디스트럭처링
-* import & export
-* async & await
+###참고
+* https://vue-loader.vuejs.org/#what-is-vue-loader
+* https://vue-loader.vuejs.org/spec.html#intro

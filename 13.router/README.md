@@ -4,10 +4,10 @@ vue.js 공식 라우터
 #설치
 ```
 //vue 2.x
-npm install vue-router
+> npm install vue-router
 
 //vue 3.x
-vue add router
+> vue add router
 ```
 
 ##추가방법

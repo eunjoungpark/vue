@@ -5,7 +5,7 @@ axios는 promise 기반임.
 
 ##설치
 ```
-npm install axios --save
+> npm install axios --save
 ```
 
 ##사용방법

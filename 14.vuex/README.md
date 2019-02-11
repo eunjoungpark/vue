@@ -13,10 +13,10 @@
 ##설치
 ```
 //vue 2.x
-npm install vuex
+> npm install vuex
 
 //vue 3.x
-vue add vuex
+> vue add vuex
 ```
 ##사용방법
 ```javascript

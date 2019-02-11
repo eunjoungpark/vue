@@ -36,12 +36,12 @@ npm run serve //로컬에서 서버구동
 * VUE2는 작업도중 필요한 도구를 추가할 경우 처음부터 다시 세팅해야 함.
 * 라이브러리 설치 
 ```
-npm install --save vue-router
-npm install --save vuex
+> npm install --save vue-router
+> npm install --save vuex
 ```
 * 개발서버 구동
 ```
-npm run dev
+> npm run dev
 ```
 
 ###VUE3.x
@@ -49,12 +49,12 @@ npm run dev
 * 프로젝트 설치 GUI를 제공
 * 라이브러리 설치
 ```
-    vue add router
-    vue add vuex
+> vue add router
+> vue add vuex
 ```
 * 개발서버 구동
 ```
-    npm run serve
+> npm run serve
 ```
 * 웹팩설정 파일(~~webpack.config.js~~)이 vue3에서는 노출이 안되고, **vue.config.js**에 선언.
 (작성방식은 동일. [자세히 알기](https://cli.vuejs.org/guide/webpack.html#simple-configuration))
