@@ -1,86 +1,66 @@
-#VUE 소개
+#Vue와 ES6
 
-##VUE 설치
+ES6는 ECMAScript 2015와 같은 의미로, ECMAScript의 6번째 주 버전을 발표한 것.
 
-* NPM 명령어
-* VUE2와 VUE3 차이점
+##let과 const
+###let
+* let는 호이스팅(hoisting) 문제 해결
+* 지역스코프와 전역스코프를 분리하여 서로의 스코프를 침범하지 않음.
+```javscript
+//호이스팅
+console.log(a); //결과 : undefined
+var a = 10;
 
-##VUE 구조
-* template
-* script
-* style
+console.log(b); //결과 : Uncaught ReferenceError: b is not defined
+let b = 10;
 
-##DIRECTIVE
-* v-text, v-html
-* v-bind
-* v-model
-* v-show, v-if, v-else, v-else-if
-* v-for
+========================================================================
 
-##INSTANCE
-* new Vue()
+//스코프1 : 중복선언 방지
+var a = 10;
+var a = 20;
+console.log(a); //결과 : 20
 
-##VUE DOM
-* Virture DOM
-* render 함수
+let a = 10;
+let a = 20;
+console.log(a); //결과 : Uncaught SyntaxError: Identifier 'a' has already been declared
 
-##VUE 라이프사이클(LIFECYCLE)
+========================================================================
 
-##Template Syntax
+//스코프2 : 값의 보장
+var a = 10;
+{
+    var a = 20;
+    console.log(a); //결과 : 20
+}
+console.log(a); //결과 : 20
 
-* Mothods
-* Computed
-* Watch
-* Filter
+let a = 10;
+(function(){
+    let a = 20;
+    console.log(a);
+})(); //결과 : 20
 
-##COMPONENT
+console.log(a); //결과 : 10
+```
 
-* Global
-* Local
-* props 속성
+*\*호이스팅(hoisting)이란, 변수나 함수가 선언되기 전에 미리 최상위에 끌어올려져 해당 변수명이 등록만 되어있는 상태로 값을 출력하려고 할때 __undefined__ 를 출력함.*
+*\* __undefined__ 는 변수는 존재지만 값인 대입되지 않은 상태임.*
 
-##EVENT
-* v-click
-* 키보드 수식어
-* 마우스 수식어
+###const
+const는 상수를 정의할 때 사용하는 것으로, 불변하는 값을 선언하기 위한 키워드.
+* 반드시 초기화 되어야 함.
+* 대입을 다시하려고 할 때 오류발생
+* 상수값이 객체 또는 배열을 경우 프로퍼티 수정가능.
 
-
-##STYLE
-
-##SLOT
-
-##AXIOS
-* promise
-
-##ROUTER
-* 선언방법
-```html
-<router-view></router-view>
-<router-link></router-link>
-``` 
-* path정의
-    * 하위 path 정의
-* name 속성
-* parameter
-    * params
-    * query
-* 라우터 인스턴스
-* 멀티 라우터 뷰
-* 리다이렉트
-* 기타 고급기법
-
-##VUEX
-* 선언방법
-* state
-* mutations
-    * commit
-* actions
-    * dispatch
-* getters
+```javascript
+const a;
+a = 10;
+console.log(a); //결과 : Missing initializer in const declaration
+```
 
 
-##VUE와 ES6
-* let 과 const
+* scope 와 closure
 * arrow function
 * 객체 리터럴
 * 스프레드 오퍼레이터
@@ -88,3 +68,4 @@
 * 디스트럭처링
 * import & export
 * async & await
+ 
