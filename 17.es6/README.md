@@ -132,6 +132,94 @@ btn.addEventListener("click", function(){
                     //객체의 의한 호출이므로 여기서의 this는 btn임.
 }, false);
 ```
+##arrow함수의 this
+arrow함수는 부모가 바라보는 this를 따라감.
+
+###일반함수의 this
+```javascript
+var outer = () => {
+    console.log(this); //window
+                    //최상위 함수의 this는 window임.
+}
+outer();
+```
+###중첩함수의 this
+```javascript
+var outer = () => {
+    console.log(this); //window
+    var inner = () => {
+        console.log(this); //window
+            //부모 outer가 window이기 때문에 inner도 window임.
+    }
+    inner();
+}
+outer();
+```
+###메서드 내부 중첩 함수의 this
+```javascript
+function outer(){
+    console.log(this); //outer
+    var inner = ()=>{
+        console.log(this); //outer
+        //부모인 outer의 this가 인스턴스이므로
+        //inner arrow함수의 this도 인스턴스가 됨.
+    }
+    inner();
+}
+var out = new outer();
+```
+
+###Object 내부 함수의 this
+```javascript
+var obj = {
+    outer : ()=>{
+        console.log(this); //window    
+        //잘 기억해보세요. arrow함수는 부모의 this를 따라가요!
+        //arrow함수가 따라가 부모가 없죠? ^^
+    }
+};
+obj.outer();
+```
+
+###Object 내부 중첩함수의 this
+```javascript
+var obj = {
+    outer : ()=>{
+        console.log(this); //window    
+        var inner = ()=>{
+            console.log(this); //window    
+            //부모가 window이므로 내부함수의 this도 window임.
+        }
+        inner();
+    }
+};
+obj.outer();
+```
+
+###이벤트 리스너의 this1
+```javascript
+var btn = document.querySelector("button");
+btn.addEventListener("click", ()=>{
+    console.log(this); //window
+                    //일반함수 였다면 호출한 객체가 this값이 었겠지만
+                    //arrow함수는 무조건 부모를 따라감.
+}, false);
+```
+###이벤트 리스너의 this2
+```javascript
+var obj = {
+    outer : function(){
+        console.log(this);//객체내부 일반함수의 this는 객체.
+        var btn = document.querySelector("button");
+        btn.addEventListener("click", ()=>{
+            console.log(this); //객채 obj
+                        //객체내부로 이벤트리스너가 들어왔을때
+                        //부모를 따라 this가 객체가 됨.
+        }, false);
+    }
+};
+obj.outer();
+```
 
 * scope 와 closure
 * arrow function
