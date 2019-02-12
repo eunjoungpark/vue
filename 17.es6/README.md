@@ -212,9 +212,9 @@ var obj = {
         console.log(this);//객체내부 일반함수의 this는 객체.
         var btn = document.querySelector("button");
         btn.addEventListener("click", ()=>{
-            console.log(this); //객채 obj
+            console.log(this); //객체 obj
                         //객체내부로 이벤트리스너가 들어왔을때
-                        //부모를 따라 this가 객체가 됨.
+                        //부모를 따라 this가 obj가 됨.
         }, false);
     }
 };
