@@ -58,7 +58,80 @@ const a;
 a = 10;
 console.log(a); //결과 : Missing initializer in const declaration
 ```
+##this
+###일반함수의 this
+```javascript
+function outer(){
+    console.log(this); //window
+}
+outer();
+```
+###중첩함수의 this
+```javascript
+function outer(){
+    function inner(){
+        console.log(this); //window
+    }
+    inner();
+}
+outer();
+```
+###메서드의 this
+```javascript
+function outer(){
+    console.log(this); //outer
+}
+var out = new outer(); //인스턴스의 this는 인스턴스
+```
 
+###메서드 내부 중첩 함수의 this
+```javascript
+function outer(){
+    console.log(this); //outer
+    function inner(){
+        console.log(this); //window
+    }
+    inner();
+}
+var out = new outer(); //인스턴스의 this는 인스턴스이지만
+                    //중첩함수는 인스턴스로 인한 호출이 아니므로 이곳의 this는 window
+```
+
+###Object 내부 함수의 this
+```javascript
+var obj = {
+    outer : function (){
+        console.log(this); //outer    
+    }
+};
+obj.outer(); //obj
+            //무엇의 의해 호출되었을 때의 this는 호출한 객체가 됨.
+
+```
+
+###Object 내부 중첩함수의 this
+```javascript
+var obj = {
+    outer : function (){
+        console.log(this); //outer    
+        function inner(){
+            console.log(this); //window    
+        }
+        inner();
+    }
+};
+obj.outer(); //obj
+            //inner함수는 객체의 의해 호출된 것이 아니므로 this가 window임.
+```
+
+###이벤트 리스너의 this
+```javascript
+var btn = document.querySelector("button");
+btn.addEventListener("click", function(){
+    console.log(this); //btn
+                    //객체의 의한 호출이므로 여기서의 this는 btn임.
+}, false);
+```
 
 * scope 와 closure
 * arrow function
@@ -68,4 +141,5 @@ console.log(a); //결과 : Missing initializer in const declaration
 * 디스트럭처링
 * import & export
 * async & await
+  
  
