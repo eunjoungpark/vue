@@ -1,6 +1,6 @@
 #Vue와 ES6
 
-ES6는 ECMAScript 2015와 같은 의미로, ECMAScript의 6번째 주 버전을 발표한 것.
+ES6는 ECMAScript 2015와 같은 의미로, ECMAScript의 6번째 주 버전을 발표한 것.  
 
 ##let과 const
 ###let
@@ -44,21 +44,216 @@ let a = 10;
 console.log(a); //결과 : 10
 ```
 
-*\*호이스팅(hoisting)이란, 변수나 함수가 선언되기 전에 미리 최상위에 끌어올려져 해당 변수명이 등록만 되어있는 상태로 값을 출력하려고 할때 __undefined__ 를 출력함.*
-*\* __undefined__ 는 변수는 존재지만 값인 대입되지 않은 상태임.*
+*\*호이스팅(hoisting)이란, 변수나 함수가 선언되기 전에 미리 최상위에 끌어올려져 해당 변수명이 등록만 되어있는 상태로 값을 출력하려고 할때 __undefined__ 를 출력함.*  
+*\* __undefined__ 는 변수는 존재지만 값이 대입되지 않은 상태를 의미.*
 
 ###const
-const는 상수를 정의할 때 사용하는 것으로, 불변하는 값을 선언하기 위한 키워드.
+const는 상수를 정의할 때 사용하는 것으로, 불변하는 값을 선언하기 위한 키워드.  
+
 * 반드시 초기화 되어야 함.
 * 대입을 다시하려고 할 때 오류발생
-* 상수값이 객체 또는 배열을 경우 프로퍼티 수정가능.
+* 상수값이 객체 또는 배열일 경우 프로퍼티 수정가능.
 
 ```javascript
 const a;
 a = 10;
 console.log(a); //결과 : Missing initializer in const declaration
 ```
+```javascript
+object 나 array타입의 변수일 경우, 값 할당 가능.
+const a = {};
+const c = [];
+a.b = 10;
+c.push(30);
+console.log(a.b); //10
+console.log(c); //[30] 
+```
+
+##scope 와 closure
+###scope
+var로 선언된 변수의 유효범위는 **함수단위**로 구분되어 짐.  
+```javascript
+var num = 10;
+function result (){
+    var num = 20; //같은 변수명을 함수내부에 선언했을 때 result안에서만 유효.
+    console.log(num);
+}
+result(); //결과 : 20
+console.log(num); //결과 : 10
+```
+let과 const의 유효범위는 **{}단위**로 구분되어 짐.
+```javascript
+//var
+var i = 10;
+for(var i=0;i<=5;i++){
+    console.log(i); //0 1 2 3 4 5
+}
+console.log(i); //6
+
+//let
+let i = 10;
+for(let i=0;i<=5;i++){
+    console.log(i); //0 1 2 3 4 5
+}
+console.log(i); //10
+
+//const
+const num = 10;
+const result = ()=>{
+    const num = 20;
+    console.log(num);//결과 : 20, 같은 이름으로 상수생성이 가능.
+}
+console.log(num);//결과 : 10
+```
+
+##Arrow 함수
+함수의 축약법으로 일반함수(function)와 차이가 있음.  
+
+* this 값이 함수를 정의할 때 결정
+* arguments 변수가 없음.
+* 생성자로 사용할 수 없음. (new 키워드 X)
+* yield 키워드 사용할 수 없음.
+
+###Arrow 함수 표현식
+```javascript
+//일반함수
+var square = function(x){return x*x};
+//arrow함수[인자1개]
+var square = (x) => {return x*x};
+//arrow함수[여러개의 인자]
+var square = (x,y,z) => {return x*y*z};
+```
+###Arrow 함수 작성방법
+1. 인수가 한 개이면, 괄호 생략가능(인수가 없으면 괄호생략 불가)
+```javascript
+var square = x => {return x*x};
+```
+2. 몸통 안에 return뿐이면 중괄호와 return  키워드 생략가능.
+```javascript
+var square = x => x*x;
+```
+3. return 뿐이라도 반환값이 객체리터럴이면 ()로 묶어야 함.
+```javascript
+var square = x => ({x:a, y:b});
+```
+4. 즉시실행함수(IIFE)
+```javascript
+(x=>x*x)(3);
+```
+
+##객체 리터럴
+기존 객체 정의 방식에서 간결하게 표현할 수 있도록 개선됨.  
+```javascript
+//속성 축약법
+import swiper from './swiper';
+var interaction = {
+    //swiper : swiper
+    swiper, //속성의 이름을 동일하게 유지할 경우 한번만 정의하면 됨.
+    slider : swiper //와 같이 서로 다르게 명명하고자 할 경우는 모두 선언해야함.
+}
+
+//메서드 축약법
+var obj = {
+    // message : function(){
+    //     return 'hello';
+    // }
+    message(){ //와 같이 선언가능.
+        return 'hello'; 
+    }
+}
+```
+
+##스프레드 오퍼레이터
+객체와 배열의 병합.  
+```javascript
+//객체
+var obj = {
+  a: 10,
+  b: 20
+};
+var obj2 = {
+	a:20,
+	c:30
+}
+obj2 = {...obj, ...obj2}; //간단하게 객체를 복제&병합함.
+console.log(obj2); //결과 : {a: 20, b: 20, c: 30}
+
+//배열
+var arr = [1,2,3];
+var arr2 = [3,4,5];
+arr2 = [...arr, ...arr2];
+console.log(arr2); //결과 : [1, 2, 3, 3, 4, 5]
+```
+나머지 매개변수  
+*\* 기존 arguments는 유사배열로 배열형태 변환을 한번 거쳐야 함.*
+```javascript
+function f(a,b,...args){
+    console.log(a,b,args); //1 2 [3 4 5 6]
+    //여기서 args는 배열타입
+}
+f(1,2,3,4,5,6);
+```
+
+##템플릿 리터럴
+변수에 문자열을 여러줄로 작성 : `(백틱)
+```javascript
+var str = `
+안녕하세요! 
+         백틱으로 문자열을 정의해볼께요.
+`;
+console.log(str);//결과 :
+                //안녕하세요! 
+                //         백틱으로 문자열을 정의해볼께요.
+```
+문자열안에 변수 및 계산식사용.
+```javascript
+var msg = "hello~";
+var str = `${msg} world!!`;
+console.log(str);//결과 : hello~ world!!
+```
+```javascript
+var msg = "hello~";
+var str = `${msg.split("")} world!!`;
+console.log(str);//결과 : h,e,l,l,o,~ world!!
+```
+
+##디스트럭처링
+일명 구조분해문법이라 하며 객체와 배열에 사용. 
+```javascript
+//객체
+var obj = {
+    a : 10,
+    b : 20,
+    c : 30
+}
+var {a,b,c} = obj; //같은 유형의 객체형태로 한번에 값 할당이 가능.
+console.log(a, b, c); //결과 : 10 20 30
+
+//배열
+var arr = ['apple', 'banana'];
+var [fruit1, fruit2] = arr;
+console.log(fruit1, fruit2); //결과 : apple banana
+```
+
+```javascript
+//인수의 구조분해
+var obj = {
+    a : 10,
+    b : 20,
+    c : 30
+};
+function test({b}){ //특정 속성을 골라 인자로 받으면 함수내부에 정의한 듯이 사용가능.
+    console.log(a); //결과 : Uncaught ReferenceError: a is not defined
+    console.log(obj.a); //결과 : 10
+    console.log(b); //결과 : 20
+}
+test(obj);
+```
+##import & export
+
+
 ##this
+실행환경을 소유한 소유자의 객체에 this를 바인딩함.
 ###일반함수의 this
 ```javascript
 function outer(){
@@ -81,7 +276,7 @@ outer();
 function outer(){
     console.log(this); //outer
 }
-var out = new outer(); //인스턴스의 this는 인스턴스
+var out = new outer(); //인스턴스의 this는 새로운 생성객체 outer가 됨.
 ```
 
 ###메서드 내부 중첩 함수의 this
@@ -175,7 +370,7 @@ var obj = {
     outer : ()=>{
         console.log(this); //window    
         //잘 기억해보세요. arrow함수는 부모의 this를 따라가요!
-        //arrow함수가 따라가 부모가 없죠? ^^
+        //arrow함수가 따라갈 부모가 없으므로 this는 window가 됨.
     }
 };
 obj.outer();
@@ -221,13 +416,8 @@ var obj = {
 obj.outer();
 ```
 
-* scope 와 closure
-* arrow function
-* 객체 리터럴
-* 스프레드 오퍼레이터
-* 템플릿 리터럴
-* 디스트럭처링
-* import & export
+
+
 * async & await
   
  
