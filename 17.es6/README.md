@@ -124,19 +124,19 @@ var square = (x) => {return x*x};
 var square = (x,y,z) => {return x*y*z};
 ```
 ###Arrow 함수 작성방법
-1. 인수가 한 개이면, 괄호 생략가능(인수가 없으면 괄호생략 불가)
+* 인수가 한 개이면, 괄호 생략가능(인수가 없으면 괄호생략 불가)
 ```javascript
 var square = x => {return x*x};
 ```
-2. 몸통 안에 return뿐이면 중괄호와 return  키워드 생략가능.
+* 몸통 안에 return뿐이면 중괄호와 return  키워드 생략가능.
 ```javascript
 var square = x => x*x;
 ```
-3. return 뿐이라도 반환값이 객체리터럴이면 ()로 묶어야 함.
+* return 뿐이라도 반환값이 객체리터럴이면 ()로 묶어야 함.
 ```javascript
 var square = x => ({x:a, y:b});
 ```
-4. 즉시실행함수(IIFE)
+* 즉시실행함수(IIFE)
 ```javascript
 (x=>x*x)(3);
 ```
