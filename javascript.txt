@@ -1,0 +1,48 @@
+1. 정규식
+    new RegExp() : 정규식 인스턴스 생성
+    exec() : 정규식 내에 문자가 존재할 경우 해당 반환
+    test() : 정규식 문자를 true or false 반환
+
+2. Element 관련
+    document.createElement(element) : 엘리먼트 생성
+    document.createTextNode(text) : 텍스트 노드 생성
+    element.appendChild(child element) : 하위요소를 상위요소에 추가
+    document.querySelector(selector) : selector에 부합하는 요소 반환.
+    document.querySelectorAll(selectors) : selectors에 부합하는 모든 요소 반환. (배열)
+    element.setAttribute(key, value) : 요소에 속성추가
+    element.getAttribute(key) : 요소의 속성값을 반환.
+    element.removeAttribute(key) : 요소의 속성값을 삭제.
+    element.nextElementSibling : 이웃하는 다음 요소 반환.
+    element.previousElementSibling : 이웃하는 이전 요소 반환.
+    element.offsetParent : offset 된 부모를 반환(body).
+
+3. 배열
+    forEach : 배열의 모든 순서를 돔.
+    [].forEach.call(_contEls, callback function(item, index ...)) : 유사배열을 forEach으로 사용할 경우
+    filter, map, reduce, 
+
+
+4. Object
+    Object.keys : 오브젝트의 모든 속성(키)값을 배열로 반환.
+
+
+면접질문
+- 유사배열과 배열의 차이
+- ES6문법 아는대로...
+    - Object.is
+    - Object.assign
+- throttle와 debounce의 차이
+- Object.defineProperty 이 무엇인가
+
+
+괜찮은 사이트 
+http://es6-features.org/#PromiseUsage
+https://www.tutorialspoint.com/jquery/jquery-effects.htm
+https://www.tutorialspoint.com/es6/es6_animation.htm
+https://meetup.toast.com/?page=7
+https://d2.naver.com/helloworld/59361
+https://www.html5rocks.com/en/features/storage
+
+
+
+
