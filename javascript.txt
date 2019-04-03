@@ -15,6 +15,8 @@
     element.nextElementSibling : 이웃하는 다음 요소 반환.
     element.previousElementSibling : 이웃하는 이전 요소 반환.
     element.offsetParent : offset 된 부모를 반환(body).
+    element.getBoundingClientRect().width : 분수값이 필요한 경우
+    element.ClientWidth : 정수값으로 반올림함.
 
 3. 배열
     forEach : 배열의 모든 순서를 돔.
@@ -26,13 +28,45 @@
     Object.keys : 오브젝트의 모든 속성(키)값을 배열로 반환.
 
 
-면접질문
+면접질문 (
+=>=> JAVASCRIPT
+- 객제지향(https://jeong-pro.tistory.com/95)
+    - 실제 세계를 모델링하여 만들어진 것으로, 각각의 속성들의 만들어지는 순서가 필요없고, 따로 독립적으로 개발되어 한 곳에 모여짐.
+    - 대형프로젝트에 적합.
+    - 특성
+        1. 클래스 + 인스턴스 (객체)
+        2. 추상화
+        3. 캡슐화
+        4. 다형성
+        5. 상속
+    - 장점
+        1. 코드 재사용이 용이 (클래스 상송 및 확장하여 사용할 수 있음.)
+        2. 디버깅이 쉬움
+        3. 신뢰성있는 소프트웨어 쉽게 제작
+        4. 업그레이드가 쉬움.
+    - 단점
+        1. 절차지향 방법보다 규모가 커지고 느려질 수 있음.
+        2. 설계시 시간과 노력이 필요.
+
+- 절차 지향
+    - 어느 한 곳을 기점으로 순서대로 만들어 나가야 하는 방식. 만들어진 속성들을 분리되면 안되고 순서가 틀어지면 안되며, 고장이 나면 전체 기능이 마비됨. 
+    다른 부품을 대체할 수도 없음.
+    - 객체지향적인 방법보다 소요시간이 줄어 유리함.
+    - 간단하고, 작은 단위의 작업에 적합.
+- Restful 이란?
+- 함수형 프로그램이랑?
+- apply, call, bind의 차이설명.
 - 유사배열과 배열의 차이
 - ES6문법 아는대로...
     - Object.is
     - Object.assign
 - throttle와 debounce의 차이
 - Object.defineProperty 이 무엇인가
+
+=>=> HTML
+DOM과 CSSOM이란?
+HTML5란?
+
 
 
 괜찮은 사이트 
@@ -42,6 +76,9 @@ https://www.tutorialspoint.com/es6/es6_animation.htm
 https://meetup.toast.com/?page=7
 https://d2.naver.com/helloworld/59361
 https://www.html5rocks.com/en/features/storage
+https://github.com/philipwalton/flexbugs (flexbox로 레이아웃 잡기)
+https://github.com/gnarf/jquery-requestAnimationFrame
+(관련 http://www.gisdeveloper.co.kr/?p=2237)
 
 
 
