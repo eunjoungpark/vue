@@ -138,7 +138,7 @@ for in은 배열을 순회하여 수식을 처리하는데, 부모배열이 가�
 반해 for-of는 부모의 배열값과 상관없이 해당 배열만 참조하므로 데이터의 신뢰성을 얻을 수 있다.
 
 - Promise (async, await)
-
+callback과의 차이
 
 =>=> HTML
 DOM과 CSSOM이란?
