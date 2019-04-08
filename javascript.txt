@@ -130,7 +130,7 @@ URI 설계시 유의사항
     다른 부품을 대체할 수도 없음.
     - 객체지향적인 방법보다 소요시간이 줄어 유리함.
     - 간단하고, 작은 단위의 작업에 적합.
-- 함수형 프로그램이랑?
+    
 - apply, call, bind의 차이설명.
 
 - 유사배열과 배열의 차이
@@ -138,6 +138,13 @@ URI 설계시 유의사항
 유사배열은 실제 object형태의 키와 값으로 되어있는 형태이다.
 그렇다고 해서 아예, 배열의 메소드들을 사용할 수 없는 것은 아니고, Array.prototype.apply나 call을
 이용하여 사용하거나 es6에서 제공하는 from메소드들 이용하면 사용할수 있다.
+
+- closure란
+메모리를 가지고 호출하는 함수, 클로저 함수가 자신이 생성됐을 때, 동일 범위에 존재하던 변수를 사용할 수 있는다는 의미.
+클로저가 생성되는 경우 (주의 : 외부함수 실행이 종료되어야, 내부함수가 호출됨)
+- 하나의 함수가 다른 함수 내에서 정의될때
+- 내부 함수가 외부 함수에 존재한느 변수를 참조할 때
+- 외부 함수의 실행이 정지된 후 내부 함수가 호출될 때 
 
 - ES6문법 아는대로...
     - Symbol 데이터 타입
@@ -150,21 +157,31 @@ URI 설계시 유의사항
     - arrow function
     - 향상된 객체 리터럴
     - 템플릿 러터럴 (백틱)
+    - for-of
+    - Array.from
 - throttle와 debounce의 차이
 - Object.defineProperty 이 무엇인가
 - map, filter, reduce, forEach차이
- map은 모든 배열의 수식을 적용하여 결과값을 모아 새배열을 생성하여 반환.
+ map은 배열의 수식을 적용하여 결과값을 모아 새배열을 생성하여 반환.
  filter는 수식에 해당하는 값만 모아 새배열을 생성하여 반환.
- reduce는 모든 배열을 돌며 누적된 하나의 값을 반환.
- forEach는 모든 배열을 순환하여 수식을 처리하는 것으로 값을 모아 새배열을 생성하는 map과는 다름.
+ reduce는 배열을 돌며 누적된 하나의 값을 반환.
+ forEach는 배열에서 사용가능한 메소드로 순환하여 수식을 처리하는 것으로 값을 모아 새배열을 생성하는 map과는 다름.
 
 - use strick 가 무엇인가
+
 - for-in과 for-of차이 (https://jsdev.kr/t/for-in-vs-for-of/2938)
-for in은 배열을 순회하여 수식을 처리하는데, 열거할수 있는 모든 속성에 반복한다. 부모배열이 가지고 있는 값을 출력해, 신뢰성이 떨어진다.
-반해 for-of는 Symbol.iterator 속성을 가지는 컬렌션 전용으로, 부모의 배열값과 상관없이 해당 배열만 참조하므로 데이터의 신뢰성을 얻을 수 있다.
+for-in은 객체를 반복하는 것으로 모든 객체에 사용 가능한다. for in은 배열을 순회하여 수식을 처리하는데, 열거할수 있는 모든 속성에 반복한다. 부모배열이 가지고 있는 값을 출력해, 신뢰성이 떨어진다.
+반해 for-of는 ES6에 추가된 방식으로 Symbol.iterator 속성을 가지는 컬렌션 전용으로, 부모의 배열값과 상관없이 해당 배열만 참조하므로 데이터의 신뢰성을 얻을 수 있다.
 
 - Promise (async, await)
 callback과의 차이
+
+- iterator란 (https://jaeyeophan.github.io/2017/04/21/ES6-9-Iterator/)
+순회가능한 객체의 시퀀스를 정의 하는 방법으로, 대표적으로 Array 객체를 들을 수 있다.
+Array객체와 String객체, TypedArray, Map, Set 에는 Syymbole.iterator가 들어있어 next()함수로 순회할 수 있다.
+
+
+- class문법
 
 =>=> HTML
 DOM과 CSSOM이란?
@@ -192,6 +209,7 @@ https://www.html5rocks.com/en/features/storage
 https://github.com/philipwalton/flexbugs (flexbox로 레이아웃 잡기)
 https://github.com/gnarf/jquery-requestAnimationFrame
 (관련 http://www.gisdeveloper.co.kr/?p=2237)
+https://jsdev.kr/
 
 
 
