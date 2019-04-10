@@ -187,8 +187,13 @@ for-in은 객체를 반복하는 것으로 모든 객체에 사용 가능한다.
 반해 for-of는 ES6에 추가된 방식으로 Symbol.iterator 속성을 가지는 컬렌션 전용으로, 부모의 배열값과 상관없이 해당 배열만 참조하므로 데이터의 신뢰성을 얻을 수 있다.
 
 - Promise (async, await)
+  https://www.zerocho.com/category/ECMAScript/post/58d142d8e6cda10018195f5a
+callback은 비동기적으로 어떤처리 이후에 처리하고 싶은 작업을 수행하는 함수를 호출하는 것을 말하는데, callback이 중첩으로 호출되어 가독성이 떨어지는 것을 콜백헬이라고 한다.
+이것을 해결하기 위해, 나온 것이 Promise이다.
+Promise를 사용하면 가독성이 좋고 처리순서를 보장할 수 있으며, 결과 값을 성공또 는 실패, 오류사항에 대한 후속작업을 가능하게 한다.
+그런데, Promise를 사용하면서 실행순서와 복잡성이 발생하여 이것을 개선할 필요가 있어 나온 것이 async와 await이다.
+async와 await는 직관적이면 간편해졌고 await문으로 실행을 지연하는 기능도 생겼다.
 
-callback과의 차이
 
 - iterator란 (https://jaeyeophan.github.io/2017/04/21/ES6-9-Iterator/)
 순회가능한 객체의 시퀀스를 정의 하는 방법으로, 대표적으로 Array 객체를 들을 수 있다.
@@ -208,9 +213,6 @@ HTML5주요기능
 canvas,
 localStorage,
 
-
-
-
 DOCTYPE이란?
 DOCUMENT TYPE의 약자로, HTML을 어떻게 구성할 것인지 정하는 기준이다.
 HTML은 과거에 사용되던 비표준 언어와, 현재까지의 표준 언어들이 있는데, HTML에 포함하고 있는 비표준을 어디까지 허용할 것인지
@@ -224,6 +226,7 @@ HTML은 과거에 사용되던 비표준 언어와, 현재까지의 표준 언�
 - 구글링
 - stackoverflow
 - https://medium.com/
+- https://www.zerocho.com/
 
 Postman
 개발하 API를 테스트하고, 테스트 결과를 공유하여 API생산성을 높여주는 플랫폼.
@@ -239,6 +242,7 @@ https://github.com/philipwalton/flexbugs (flexbox로 레이아웃 잡기)
 https://github.com/gnarf/jquery-requestAnimationFrame
 (관련 http://www.gisdeveloper.co.kr/?p=2237)
 https://jsdev.kr/
+
 
 
 
