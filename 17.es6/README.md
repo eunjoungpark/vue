@@ -331,7 +331,7 @@ outer();
 function outer(){
     console.log(this); //outer
 }
-var out = new outer(); //인스턴스의 this는 새로운 생성객체 outer가 됨.
+var out = new outer(); //인스턴스의 this는 생성자 outer가 됨.
 ```
 
 ###메서드 내부 중첩 함수의 this
@@ -343,7 +343,7 @@ function outer(){
     }
     inner();
 }
-var out = new outer(); //인스턴스의 this는 인스턴스이지만
+var out = new outer(); //인스턴스의 this는 생성자,
                     //중첩함수는 인스턴스로 인한 호출이 아니므로 이곳의 this는 window
 ```
 
@@ -351,11 +351,10 @@ var out = new outer(); //인스턴스의 this는 인스턴스이지만
 ```javascript
 var obj = {
     outer : function (){
-        console.log(this); //outer    
+        console.log(this); //obj    
     }
 };
-obj.outer(); //obj
-            //무엇의 의해 호출되었을 때의 this는 호출한 객체가 됨.
+obj.outer();//무엇의 의해 호출되었을 때의 this는 호출한 객체가 됨.
 
 ```
 
