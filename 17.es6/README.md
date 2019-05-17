@@ -410,8 +410,8 @@ function outer(){
     console.log(this); //outer
     var inner = ()=>{
         console.log(this); //outer
-        //부모인 outer의 this가 인스턴스이므로
-        //inner arrow함수의 this도 인스턴스가 됨.
+        //생성자 함수로 인한 선언은 생성자가 됨.
+        //즉, inner arrow함수의 this도 생성자 outer가 됨.
     }
     inner();
 }
