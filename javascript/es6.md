@@ -106,28 +106,28 @@ console.log(doAnotherThing.name); //"doAnotherThing"
 - 동일한 이름의 매개변수를 사용할 수 없음.
 - 선언가능 방식
 
-    ```javascript
-    //일반적 선언방식
-    var eun = () => {
-        return "hello";
-    }
+```javascript
+//일반적 선언방식
+var eun = () => {
+    return "hello";
+}
 
-    //{}와 return 생략
-    var eun = () => "hello";
+//{}와 return 생략
+var eun = () => "hello";
 
-    //문장이 2줄 이상이면 {}, return 생략불가
-    var eun = (greet) => {
-        var name = " eunjoung"
-        return greet + name;
-    }
+//문장이 2줄 이상이면 {}, return 생략불가
+var eun = (greet) => {
+    var name = " eunjoung"
+    return greet + name;
+}
 
-    //인수가 한개이면, () 생략 가능
-    var eun = str => str;
+//인수가 한개이면, () 생략 가능
+var eun = str => str;
 
 
-    //인수가 없거나 2개 이상이면 () 사용해야 함.
-    var eun = (greet,name) => greet + name;
-    ```
+//인수가 없거나 2개 이상이면 () 사용해야 함.
+var eun = (greet,name) => greet + name;
+```
 - arrow함수의 this
     - arrow함수의 this는 전역선언일 경우 전역객체이며, 부모 함수의 this를 따라감.
     - this의 예
@@ -282,6 +282,7 @@ Object.getOwnPropertyNames(object name);
     ```
 
 - 객체 : 할당할 대상의 변수명이 객체의 속성명과 동일 해야함.
+
     ```javascript
     var obj = {
         name : "park",
