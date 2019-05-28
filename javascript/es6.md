@@ -132,260 +132,260 @@ var eun = (greet,name) => greet + name;
     - arrow함수의 this는 전역선언일 경우 전역객체이며, 부모 함수의 this를 따라감.
     - this의 예
     
-    ```javascript
-    //전역함수
-    var fn = ()=>{
-        console.log(this); //window
-    }
-    fn();
+```javascript
+//전역함수
+var fn = ()=>{
+    console.log(this); //window
+}
+fn();
 
 
-    //생성자로 선언된 함수
-    function Fn() {
+//생성자로 선언된 함수
+function Fn() {
+    console.log(this); //Fn
+    var sFn = () => {
         console.log(this); //Fn
-        var sFn = () => {
-            console.log(this); //Fn
-        }
-        sFn();
     }
-    var fn = new Fn()
+    sFn();
+}
+var fn = new Fn()
 
-    //객체 내부에 선언된 메소드
-    var obj = {
-        fn : ()=>{
-            console.log(this); //windows
-        }
+//객체 내부에 선언된 메소드
+var obj = {
+    fn : ()=>{
+        console.log(this); //windows
     }
+}
 
-    obj.fn();
-    ```
+obj.fn();
+```
 ##객체 리터럴
 - 프로퍼티 초기자 축약
 
-    ```javascript
-    var obj = {
-        name : name, //이름과 값이 동일하면 축약 할수 있음.
-        age : age
-    }
+```javascript
+var obj = {
+    name : name, //이름과 값이 동일하면 축약 할수 있음.
+    age : age
+}
 
-    var name = "eun";
-    var age = 30;
-    var obj = {
-        name, //이렇게되면 주변에 name과 age를 찾아 그 값을 할당.
-        age
-    }
-    ```
+var name = "eun";
+var age = 30;
+var obj = {
+    name, //이렇게되면 주변에 name과 age를 찾아 그 값을 할당.
+    age
+}
+```
 
 - 간결한 메서드
 
-    ```javascript
-    var obj = {
-        name : function(){
-            return "eun";
-        },
-        name() {    // : fuction 이 생략됨.
-            return "eun";
-        }
+```javascript
+var obj = {
+    name : function(){
+        return "eun";
+    },
+    name() {    // : fuction 이 생략됨.
+        return "eun";
     }
-    ```
+}
+```
 
 - 계산된 프로퍼티 이름
 
-    ```javascript
-    var lastname = "last name";
-    var justname = " eunjoung park";
-    var obj = {
-        "first name" : "eunjoung", //문자열로 name을 설정
-        [lastname] : "park", //상단에 선언된 "last name"을 []안에서 계산되어 사용.
-        ["hello" + justname] : "hello park!!"  //[]안은 계산되어 문자열+변수 조합으로 사용할 수 있음.
-    }
-    console.log(obj["first name"]);
-    console.log(obj[lastname]);
-    console.log(obj["last name"]);
-    console.log(obj["hello eunjoung park"]);
-    ```
+```javascript
+var lastname = "last name";
+var justname = " eunjoung park";
+var obj = {
+    "first name" : "eunjoung", //문자열로 name을 설정
+    [lastname] : "park", //상단에 선언된 "last name"을 []안에서 계산되어 사용.
+    ["hello" + justname] : "hello park!!"  //[]안은 계산되어 문자열+변수 조합으로 사용할 수 있음.
+}
+console.log(obj["first name"]);
+console.log(obj[lastname]);
+console.log(obj["last name"]);
+console.log(obj["hello eunjoung park"]);
+```
 
 - 나머지 연산자(스프레드 오퍼레이터) & 나머지 매개변수
     - 배열, 객체의 값을 열거하는 방식으로, 변수 나 인수로 표현 가능.
     - 나머지 매개변수의 경우 맨 마지막에 선언되어야 함.
     - 나머지 연산자로 배열과 객체를 전달할 시에 다른 값과 함께 사용가능.
 
-    ```javascript
-    function printName(...name, age){ //...name 뒤에 다른 매개변수를 선언할 수 없음. age로 인해 오류발생
-        for(var n in name){           // 출력 : 
-            console.log(name[n]); // eun
-                                // joung
-                                // park 
-        }
+```javascript
+function printName(...name, age){ //...name 뒤에 다른 매개변수를 선언할 수 없음. age로 인해 오류발생
+    for(var n in name){           // 출력 : 
+        console.log(name[n]); // eun
+                            // joung
+                            // park 
     }
+}
 
-    printName("eun","joung","park");
-    ```
+printName("eun","joung","park");
+```
 - 객체의 setter에 나머지변수를 사용할 수 없음. setter는 인수를 한 개만 받도록 설계되어있음. 
 - 객체 메서드
     - Object.is() : 두 값을 비교하여 true, false로 반환.
 
-    ```javascript
-    console.log(+0 == -0); //true
-    console.log(Object.is(+0,-0)); //false
+```javascript
+console.log(+0 == -0); //true
+console.log(Object.is(+0,-0)); //false
 
-    console.log(NaN == NaN); //false
-    console.log(Object.is(NaN, NaN)); //true
+console.log(NaN == NaN); //false
+console.log(Object.is(NaN, NaN)); //true
 
-    console.log(5 == 5); //true
-    console.log(5 == "5"); //true
+console.log(5 == 5); //true
+console.log(5 == "5"); //true
 
-    console.log(Object.is(5,5));//true
-    console.log(Object.is(5,"5"));//false
-    ```
+console.log(Object.is(5,5));//true
+console.log(Object.is(5,"5"));//false
+```
     - Object.assign() : 객체 합성
 
-    ```javascript
-    var receiver = {};
-    Object.assign(receiver, {
-        type : "js",
-        name : "file.js"
-    },{
-        type : "css"
-    });
+```javascript
+var receiver = {};
+Object.assign(receiver, {
+    type : "js",
+    name : "file.js"
+},{
+    type : "css"
+});
 
-    또는
-    
-    var receiver = Object.assign({
-        type : "js",
-        name : "file.js"
-    },{
-        type : "css"
-    });
+또는
 
-    console.log(receiver.type); //"css"
-    console.log(receiver.name); // "file.js"
-    ```
+var receiver = Object.assign({
+    type : "js",
+    name : "file.js"
+},{
+    type : "css"
+});
+
+console.log(receiver.type); //"css"
+console.log(receiver.name); // "file.js"
+```
 - 객체속성 열거 
 Object.getOwnPropertyNames(object name);
 
 ##구조분해
 - 배열
 
-    ```javascript
-    var num = [1,2,3];
-    var [a,b] = num; console.log(a, b); //1,2
-    var [a, ...b] = num; console.log(b); //[2,3]
-    var [a = 5, b, c, d = 4] = num; console.log(a,b,c,d); //1,2,3,4
-    var [a, , b] = num; console.log(a,b); //1,3
+```javascript
+var num = [1,2,3];
+var [a,b] = num; console.log(a, b); //1,2
+var [a, ...b] = num; console.log(b); //[2,3]
+var [a = 5, b, c, d = 4] = num; console.log(a,b,c,d); //1,2,3,4
+var [a, , b] = num; console.log(a,b); //1,3
 
-    var a = 1;
-    var b =  2;
-    [b,a] = [a,b]; console.log(b,a); //1,2
+var a = 1;
+var b =  2;
+[b,a] = [a,b]; console.log(b,a); //1,2
 
-    var [a,b] = [1,2,3];console.log(a,b); //1,2
-    ```
+var [a,b] = [1,2,3];console.log(a,b); //1,2
+```
 
 - 객체 : 할당할 대상의 변수명이 객체의 속성명과 동일 해야함.
 
-    ```javascript
-    var obj = {
-        name : "park",
-        age : 30,
-        greet (){
-            console.log("hello!!!");
+```javascript
+var obj = {
+    name : "park",
+    age : 30,
+    greet (){
+        console.log("hello!!!");
+    }
+} 
+var {name, age, value, height = 160} = obj;
+console.log(name , age); //park 30
+console.log(value); //undefined
+console.log(height); //160 - 초기값설정 가능
+
+또는 
+
+var name, age;
+({name, age} = obj); 
+console.log(name , age); //park 30
+
+
+var {greet} = obj; 
+greet(); //hello!!!
+
+var {greet:hello} = obj; 
+hello(); //hello!! - 변수명을 hello로 변경가능    
+```
+```javascript
+//중첩된 객체 구조분해
+let node = {
+    type : "Identifier",
+    name : "foo",
+    loc : {
+        start : {
+            line : 1,
+            column : 1
         }
-    } 
-    var {name, age, value, height = 160} = obj;
-    console.log(name , age); //park 30
-    console.log(value); //undefined
-    console.log(height); //160 - 초기값설정 가능
+    }
+};
 
-    또는 
+let {loc : {start}} = node;
+console.log(start.line); //1
+console.log(start.column); //1
 
-    var name, age;
-    ({name, age} = obj); 
-    console.log(name , age); //park 30
-
-
-    var {greet} = obj; 
-    greet(); //hello!!!
-    
-    var {greet:hello} = obj; 
-    hello(); //hello!! - 변수명을 hello로 변경가능    
-    ```
-    ```javascript
-    //중첩된 객체 구조분해
-    let node = {
-        type : "Identifier",
-        name : "foo",
-        loc : {
-            start : {
-                line : 1,
-                column : 1
-            }
-        }
-    };
-
-    let {loc : {start}} = node;
-    console.log(start.line); //1
-    console.log(start.column); //1
-
-    let {loc : {start : localStart}} = node;
-    console.log(localStart.line); //1
-    console.log(localStart.column); //1
-    ```
+let {loc : {start : localStart}} = node;
+console.log(localStart.line); //1
+console.log(localStart.column); //1
+```
 
 ##Symbol
 - 원시데이터형 (유형 : string, number, boolean, null, undefined, symbol)
 - new 생성자 키워드를 지원하지 않음.
 - 생성방법
-    ```javascript
-    let symbol = new Symbol();
-    let symbol1 = new Symbol("sym1"); //문자열로 변수을 유추할 수 있게 함. 문자열은 toString()으로 출력하는 것 외에는
-                                    // 활용되지 않음.
-    let symbol2 = new Symbol.for("sym1"); //symbol2를 계속 활용 가능.
-    ```
+```javascript
+let symbol = new Symbol();
+let symbol1 = new Symbol("sym1"); //문자열로 변수을 유추할 수 있게 함. 문자열은 toString()으로 출력하는 것 외에는
+                                // 활용되지 않음.
+let symbol2 = new Symbol.for("sym1"); //symbol2를 계속 활용 가능.
+```
 - 비공개 이름기능
-    ```javascript
-    let name = Symbol.("name");
-    let person = {
-        [name] : "park",
-        age : 30
-    }
-    for(item in person){
-        console.log(item); //[name]속성은 색인되지 않음.
-    }
-    ```
+```javascript
+let name = Symbol.("name");
+let person = {
+    [name] : "park",
+    age : 30
+}
+for(item in person){
+    console.log(item); //[name]속성은 색인되지 않음.
+}
+```
 - 유일무이한(항상 다른 ID) 값을 가짐.
-    ```javascript
-        console.log(Symbol("sym") === Symbol("sym")); //false 
-    ```
+```javascript
+    console.log(Symbol("sym") === Symbol("sym")); //false 
+```
 - 유일한 식별자를 나타내면서 동일한 심벌 ID를 갖도록 처리도 가능함.(전역 심볼 저장소에 등록됨.)
-    ```javascript
-    let symbol1 = Symbol.for("sym");
-    let symbol2 = Symbol.for("sym");
-    console.log(symbol1 === symbol2); //true
-    ```
+```javascript
+let symbol1 = Symbol.for("sym");
+let symbol2 = Symbol.for("sym");
+console.log(symbol1 === symbol2); //true
+```
 
 - 또다른 장점 : Symbol.for("age")가 person.age를 오버라이드 하지 않아, 다른 값을 액세스할 수 있음.
-    ```javascript
-    let symbol = Symbol.for("age");
+```javascript
+let symbol = Symbol.for("age");
 
-    let person = {
-        name : "eun",
-        age : 30
-    }
+let person = {
+    name : "eun",
+    age : 30
+}
 
-    function makeAge(obj){
-        let anotherAge = Symbol.for("age");
-        obj[anotherAge] = 27;
-    }
-    makeAge(person);
-    console.log(person[symbol]);
-    console.log(person["age"]);
-    ```
+function makeAge(obj){
+    let anotherAge = Symbol.for("age");
+    obj[anotherAge] = 27;
+}
+makeAge(person);
+console.log(person[symbol]);
+console.log(person["age"]);
+```
 - 심벌은 타입변환이 안됨.
-    ```javascript
-    let symbol = Symbol("age");
-    console.log(symbol + "age"); //에러!
-    console.log(symbol + 1); //에러!
-    ```
+```javascript
+let symbol = Symbol("age");
+console.log(symbol + "age"); //에러!
+console.log(symbol + 1); //에러!
+```
 - 심벌 프로퍼티 열거
 Object.getOwnPropertySymbols(object name);
 
