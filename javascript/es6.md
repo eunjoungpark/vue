@@ -238,7 +238,8 @@ console.log(5 == "5"); //true
 console.log(Object.is(5,5));//true
 console.log(Object.is(5,"5"));//false
 ```
-    - Object.assign() : 객체 합성
+
+- Object.assign() : 객체 합성
 
 ```javascript
 var receiver = {};
