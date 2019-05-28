@@ -24,7 +24,7 @@
 ##이벤트
 이벤트 핸들러와 이벤트 리스너는 다름.
 이벤트 리스너는 이벤트에 함수를 연결하거나 제거 할 수 있음.
-```
+```javascript
 function test(){
     console.log("test");
 }

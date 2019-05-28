@@ -16,14 +16,14 @@
 
 ##객체를 생성하는 방법
 
-```
-1. 객체리터럴 방식
+```javascript
+//1. 객체리터럴 방식
 var obj = {}
 
-2. 생성자 방식
+//2. 생성자 방식
 var obj = new Object;
 
-3. Object.create(null)
+//3. Object.create(null)
 var obj = Object.create(null); //프로퍼티 & 프로토타입이 정의되지 않은 빈객체 생성.
 var obj = Object.create(Object.prototype);//Object.prototype이 있는 빈 객체 생성.
 function Person(){
@@ -34,7 +34,7 @@ var person = Object.create(Person.prototype);//사용자 정의 객체 할당
 
 ##객체 속성 및 접근법
 객체 내에 속성유형은 모두선언 가능
-```
+```javascript
 var card = {
     suit : "something",
     hobbies : ["cycle", "sing"],
@@ -44,26 +44,26 @@ var card = {
     "nick-name" : "zzangsuni"
 }
 
-1. card.suit // .연산자
-2. card["suit"] // []연산자
-3. card.status();
-4. card["nick-name"]); //문자열로 된 키워드를 사용할 때 유용
+//1. card.suit   .연산자
+//2. card["suit"]   []연산자
+//3. card.status();
+//4. card["nick-name"]);  문자열("")로 된 키워드를 사용할 때 유용
 
 ```
 
 ##선언되지 않은 변수 또는 프로퍼티 참조
-```
-1. 객체속성 참조의 경우
+```javascript
+//1. 객체속성 참조의 경우
 var obj = {}
 console.log(obj.a); //undeined
 
-2. 변수 참조의 경우
+//2. 변수 참조의 경우
 console.log(a); //Uncaught ReferenceError: testSomething is not defined
 ```
 ##생성자란
 new키워드로 객체를 생성할 것을 기대하고 만든 함수를 의미.
 생성자로 만든 객체를 인스턴스라고 하며 이것을 객체지향언어에서 실체라 표현함.
-```
+```javascript
     var obj = new Object(); //obj는 인스턴스이며 실체임.
 ```
 
@@ -78,7 +78,7 @@ prototype : 함수객체에 있는 속성으로, 상속된 모든 다른 객체�
 객체를 for-in으로 순환하면 prototype(부모 객체에서 상속된)에 명시된 속성들도 순환함.
 hasOwnProperty 속성을 이용하면, 해당 객체에 속한 속성인지 boolean으로 반환.
 (상속받은 속성이면 false반환)
-```
+```javascript
 Object.prototype.job = "programer";
 var obj = {
     name : "eun",
@@ -92,7 +92,7 @@ for(pro in obj){
 
 * Object.keys(obj) 
 지정한 객체에 열거가능한 속성만 배열로 반환.
-```
+```javascript
     var obj = {
         name : "eun",
         age : 30,
@@ -104,14 +104,14 @@ for(pro in obj){
 
 * Object.getOwnPropertyNames
 지정한 객체의 프로퍼티 중에 열거가능 여부와 상관없이 배열로 반환
-```
+```javascript
 console.log(Object.getOwnPropertyNames(obj));
 //["name","age","sayHello"]
 ```
 
 * in 연산자
 in은 자신의 프로퍼티외에 Object 내에 속성까지 존재여부를 true or false로 반환.
-```
+```javascript
 Object.prototype.job = "programer";
 var obj = {
     name : "eun",
@@ -125,7 +125,7 @@ console.log("toString" in obj); //true
 
 ##Object.create(null)
 생성자(new)방식으로된 함수 객체를 상속받지 않고, 객체러터럴방식의 객체를 상속받음.
-```
+```javascript
 var anotherPerson = {
     name : 'park',
     age : 37,
@@ -148,7 +148,7 @@ var person2 = Object.create(anotherPerson2.prototype); //anotherPerson2의 프�
 ##Object.defineProperty()
 특정 객체의 속성을 세부적으로 설정할 수 있는 속성
 
-```
+```javascript
 var account = {
     cash : 12000,
     _name : 'Default',
@@ -179,7 +179,7 @@ console.log(account._name); //Default
 
 ##Object.defineProperties()
 여러개의 프로퍼티를 한꺼번에 설정
-```
+```javascript
 var person = Object.defineProperties({},{
     _name : {
         value : 'Tom',
@@ -201,7 +201,7 @@ Object.getOwnPropertyDescriptor(person, "name");
 
 ##Object.getOwnPropertyDescriptor(객체, 프로퍼티 이름);
 그 객체의 프로퍼티 디스크립터만 가져옴(부모속성 X)
-```
+```javascript
 Object.getOwnPropertyDescriptor(person, "name");
 //{enumberable : true, configruable : true}
 ```

@@ -37,7 +37,7 @@ __proto__값은 그 객체에게 상속을 해 준 부모 객체를 가리킴. �
 * isPrototypeOf (프로토타입객체.isPrototypeOf(객체)) 
 특정 객체가 그 객체의 프로토타입 체인에 포함되어 있는지 여부를 boolean으로 반환.
 즉, new, apply, call로 생성된 것인지 판단.
-```
+```javascript
 function F(){}
 var obj = new F();
 
@@ -51,14 +51,14 @@ console.log(Date.prototype.isPrototype(obj)); //false
 ```
 
 ##객체의 프로토타입을 반환(ES5).
-```
+```javascript
 Object.getPrototypeOf(friend);
 ```
 
 ##프로토타입 설정(ES6)
 인스턴스화 이후 프로토타입이 변경하지 않을 것이라는 가정에서 변경가능으로 바뀜.
 Object.setPrototypeOf();
-```
+```javascript
 var person = {};
 var dog = {};
 let friend = Object.create(person);

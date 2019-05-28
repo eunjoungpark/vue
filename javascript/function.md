@@ -2,13 +2,13 @@
 
 ##함수선언 방식의 차이
 함수리터럴로 선언 되었을때, 함수의 끌어올림(hoisting)이 발생하지 않음.
-```
-    1. 일반함수 선언 
+```javascript
+    //1. 일반함수 선언 
     function test(){
         do something ...
     }
 
-    2. 함수 리터럴
+    //2. 함수 리터럴
     var test = function(){
         do something ...
     }
@@ -16,7 +16,7 @@
 
 ## Function 생성자
 Function 생성자는 전역변수와 자신의 지역변수만 읽고 쓸 수 있다는 단점이 있으며 악의적으로 악성코드가 실행될 수 있는 보안문제가 있음.
-```
+```javascript
     var fn = new Function("a","b","return a+b");
 ```
 
@@ -56,7 +56,7 @@ var로 선언된 변수와 함수는 **전역환경**에 정의되어 delete로 
 ## apply vs call vs bind
 this와 인수를 이용해서 함수를 실행.
 
-```
+```javascript
  function TestFunc(arg1, arg2){
     console.log(arg1 + arg2 + this.name);
  }
