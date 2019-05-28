@@ -105,6 +105,7 @@ console.log(doAnotherThing.name); //"doAnotherThing"
 - argruments객체 없음.
 - 동일한 이름의 매개변수를 사용할 수 없음.
 - 선언가능 방식
+
     ```javascript
     //일반적 선언방식
     var eun = () => {
@@ -156,7 +157,7 @@ console.log(doAnotherThing.name); //"doAnotherThing"
         }
     }
 
-        obj.fn();
+    obj.fn();
     ```
 ##객체 리터럴
 - 프로퍼티 초기자 축약
@@ -176,6 +177,7 @@ console.log(doAnotherThing.name); //"doAnotherThing"
     ```
 
 - 간결한 메서드
+
     ```javascript
     var obj = {
         name : function(){
@@ -188,6 +190,7 @@ console.log(doAnotherThing.name); //"doAnotherThing"
     ```
 
 - 계산된 프로퍼티 이름
+
     ```javascript
     var lastname = "last name";
     var justname = " eunjoung park";
@@ -206,6 +209,7 @@ console.log(doAnotherThing.name); //"doAnotherThing"
     - 배열, 객체의 값을 열거하는 방식으로, 변수 나 인수로 표현 가능.
     - 나머지 매개변수의 경우 맨 마지막에 선언되어야 함.
     - 나머지 연산자로 배열과 객체를 전달할 시에 다른 값과 함께 사용가능.
+
     ```javascript
     function printName(...name, age){ //...name 뒤에 다른 매개변수를 선언할 수 없음. age로 인해 오류발생
         for(var n in name){           // 출력 : 
@@ -220,6 +224,7 @@ console.log(doAnotherThing.name); //"doAnotherThing"
 - 객체의 setter에 나머지변수를 사용할 수 없음. setter는 인수를 한 개만 받도록 설계되어있음. 
 - 객체 메서드
     - Object.is() : 두 값을 비교하여 true, false로 반환.
+
     ```javascript
     console.log(+0 == -0); //true
     console.log(Object.is(+0,-0)); //false
@@ -234,6 +239,7 @@ console.log(doAnotherThing.name); //"doAnotherThing"
     console.log(Object.is(5,"5"));//false
     ```
     - Object.assign() : 객체 합성
+
     ```javascript
     var receiver = {};
     Object.assign(receiver, {
@@ -260,6 +266,7 @@ Object.getOwnPropertyNames(object name);
 
 ##구조분해
 - 배열
+
     ```javascript
     var num = [1,2,3];
     var [a,b] = num; console.log(a, b); //1,2
