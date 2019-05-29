@@ -111,6 +111,7 @@ console.log(Object.getOwnPropertyNames(obj));
 
 * in 연산자
 in은 자신의 프로퍼티외에 Object 내에 속성까지 존재여부를 true or false로 반환.
+in 연사자는 객체의 프로토타입이 null프로토타입을 가지는 객체에 사용하는 경우에만 안전.
 ```javascript
 Object.prototype.job = "programer";
 var obj = {

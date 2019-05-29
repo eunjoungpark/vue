@@ -391,4 +391,75 @@ console.log(symbol + 1); //에러!
 Object.getOwnPropertySymbols(object name);
 
 
+##Set & Weak Set
+###Set
+- 배열 데이터를 저장함.
+- 중복을 제거함.
+- 키값이 없음.
+- 삽입된 값의 타일을 강제변환(문자형)하지 않음.
+- 배열처럼 인덱스 값으로 요소에 직접접근 불가.
+- 값을 출력할 때, 이터레이터 사용.
+- 메서드 종류
+    - add(value) : 선택 요소 추가
+    - delete(value) : 선택 요소 삭제
+    - clear() : 인스턴스의 모든 값 삭제.
+    - forEach(function(value,value,set){}, this) : set에 저장된 값을 순회. 두번째 인자로 this사용 가능.
+    - size : 요소가 몇 개인지 반환.
+
+```javascript
+let set = new Set([1,2]);
+let arr = [...set]; //배열로 변환가능.
+set.forEach(function(value, value, setArray){
+    console.log(value); //값을 넘기는 인자가 두개
+});
+```
+
+###Weak Set
+- 약한 Set
+- 객체형 값만 받을 수 있음(가비지 컬렉터가 발생될 수 있는 유형에 적합).
+- 이터러블이 아니므로 for-of 사용불가
+- Weak Set안에 값 확인불가.
+- forEach, size프로퍼티 제공하지 않음.
+- 메서드 종류
+    - add(value) : 선택 요소 추가
+    - has(value) : 선택 요소 존재여부 반환.
+    - delete(value) : 선택 요소 삭제
+
+```javascript
+let key1 = {};
+let weakset = new WeakSet([key1]); //배열형태로 객체값을 초기화.
+console.log(weakset.has(key1)); //true
+```
+
+##Map & Weak Map
+###Map
+- 키와 값이 한쌍인 컬렉션임.
+- 메서드 종류
+    - set(key, value) : 값 추가
+    - get(key) : 값 반환
+    - has(key) : 키값 존재 여부 반환.
+    - delete(key) : 키와 키의 값 제거
+    - clear() : map의 내용 모두 제거
+    - size : 요소가 몇 개인지 반환.
+    - forEach(function(value,key,map){}, this) : map의 요소를 순회. 두번째 인자로 this사용 가능.
+
+###Weak Map
+- 약한 Map
+- 모든 키가 객체여야 함.
+- Weak Map은 DOM 요소의 객체를 만들때 적합.
+- forEach(), clear(), size프로퍼티 지원안함.
+- 메서드 종류
+    - set(key, value) : 값 추가
+    - get(key) : 값 반환.
+    - has(key) : 키값 존재 여부 반환.
+    - delete(key) : 키와 키의 값 삭제 
+    
+```javascript
+let key1 = {};
+let weakmap = new WeakMap([key1,"key1Value"]); //배열형태로 객체값을 초기화.
+console.log(weakmap.get(key1)); //"key1Value"
+```
+
+
 *\* es6 지원상황 : [https://kangax.github.io/compat-table/es6/*](https://kangax.github.io/compat-table/es6/)*
+
