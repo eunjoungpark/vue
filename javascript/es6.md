@@ -453,11 +453,159 @@ console.log(weakset.has(key1)); //true
     - get(key) : 값 반환.
     - has(key) : 키값 존재 여부 반환.
     - delete(key) : 키와 키의 값 삭제 
-    
+
 ```javascript
 let key1 = {};
 let weakmap = new WeakMap([key1,"key1Value"]); //배열형태로 객체값을 초기화.
 console.log(weakmap.get(key1)); //"key1Value"
+```
+
+##일반 배열의 forEach
+일반 배열문은 forEach(function(value, index, array){}, this)의
+인수를 갖음.
+
+##이터레이터
+반복을 설계하기 위한 객체
+- 메서드
+    - next() : 반복가능한 값을 순회하여 {value:value, done: false or true} 객체를 반환. 마지막 값 이후에 {value:undefined, done:true}를 반환.
+
+##제네레이터
+이터레이터를 반화하는 함수, return과 같이 반환해주는 yield문을 사용.
+함수를 종료시키는 return과 다르게 이터레이터의 값을 하나씩 반환하고, 다음 next()문이 호출될 때까지 대기함.
+
+```javascript
+function *eunjoung(){
+    yield 1;
+    yield 2;
+    yield 3;
+}
+let eun = eunjoung();
+console.log(eun.next()); //{value: 1, done: false}
+console.log(eun.next()); //{value: 2, done: false}
+console.log(eun.next()); //{value: 3, done: false}
+console.log(eun.next()); //{value: undefined, done: true}
+```
+
+##이터러블
+- Symbol.iterator 프로퍼티를 갖는 객체.
+- ES6에 Array, Set, Map, 문자열은 이터러블임.
+- 이터러블은 for-of와 함께 사용되도록 설계됨.
+
+```javascript
+let values = [1,2,3];
+let iterator = values[Symbol.iterator]();
+console.log(iterator.next());
+```
+- 이터러블 만들기
+```javascript
+let collection = {
+    items : [],
+    *[Symbol.iterator](){
+        for(let item of this.items){
+            yield item;
+        }
+    }
+}
+collection.items.push(1);
+collection.items.push(2);
+collection.items.push(3);
+for(let x of collection){
+    console.log(x);
+}
+//1
+//2
+//3
+```
+
+##내장 이터레이터
+- entries() : 값으로 키와 값을 갖는 이터레이터 반환
+- values() : 값으로 값을 갖는 이터레이터 반환.
+- keys() : 값으로 키를 갖는 이터레이터 반환.
+
+## Class선언
+- Class문 안에 메서드는 prototype임.
+- Class문 안에 생성자를 정의 함으로 해서 typeof가 `function`임.
+- Class는 호이스팅되지 않음.
+- Class내부는 자동으로 strict모드 임.
+- Class의 모든 메서드는 열거불가.
+- Class는 new키워드로 정의하여야 함.
+- Class 내부에서 Class이름을 덮어쓸 수 없지만, 외부에서는 가능.
+- Class의 메서드나 접근자 프로퍼티 앞에 static이라 명시하여 정적 멤버를 만들수 있음.
+
+### Class선언 방법
+```javascript
+class Person {
+    constructor(name){
+        this.name = name;
+    }
+    getName(){ //축약법을 사용, 프로토타입메서드
+
+    }
+}
+
+또는 
+
+let Person = class {
+    constructor(name){
+        this.name = name;
+    }
+    getName(){
+
+    }
+}
+```
+### 일급 시민 클래스
+- 함수에 전달되고
+- 함수로부터 반환되고
+- 변수에 할당될 수 있는 값을 일급 시민이라고 함.
+
+```javascript
+//선언시 바로 인스턴스에 반환.
+let person = new class {
+    constructor(name){
+        this.name = name;
+    }
+
+    sayName(){
+        console.log(this.name);
+    }
+}("Nicholas");
+
+person.sayName(); //"Nicholas"
+```
+###파생클래스
+- 파생클래스에서 constructor를 명시하려면 반드시 super()를 사용해야함.
+- 파생클래스에서만 super를 사용할 수 있음.
+- 생성자안에서 this를 접근하기 전에 super를 먼저 호출해야 함.
+- super를 호출하지 않는 유일한 방법은 생성자에서 객체를 반환하는 것.
+- 기반 클래스의 정적 멤버도 상속됨.
+- 일반 함수선언식도 상속할 수 있음.
+```javascript
+    function Animal(move){
+        this.move = move;
+    }
+
+    class Person {
+        constructor(name){
+            this.name = name;
+        }
+        sayName (){
+            console.log(this.name);
+        }
+    }
+
+    class Human extends Person {
+        constructor(name, age){
+            super(name);
+            this.age = age;
+        }
+    }
+
+    class cat extends Animal{
+        constructor(move){
+            super(move);
+        }
+    }
 ```
 
 
