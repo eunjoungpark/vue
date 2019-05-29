@@ -608,6 +608,30 @@ person.sayName(); //"Nicholas"
     }
 ```
 
+##배열
+- Array.of() : new Array(2) 와 같이 한 개의 숫자 인수로 생성자를 호출하면, 이것은 요소가 되지 못하고 배열의 길이가 됨.
+이 문제를 해결하기 위해 Array.of(2) 로 해결할 수 있고 예측가능 한 연산을 수행함.
+- Array.from() : 유사배열을(객체)를 배열처리 사용하고자 할때 사용.
+```javascript
+//일반적인 사용법
+let el = document.querySelectorAll("button");
+let elArr = Array.from(el);
+
+//매핑변환 가능.
+let el = document.querySelectorAll("button");
+Array.from(el, val=> val.textContent="버튼");
+```
+- find() : 특정조건에 맞는 첫번째 값을 반환
+- findIndex() : 특정조건에 맞는 첫번째 요소의 위치 반환
+
+```javascript
+let numbers = [25,30,35,40,45];
+console.log(numbers.find(n=>n>33)); //35
+console.log(numbers.findIndex(n=>n>33)); //2
+```
+- fill(변경할 값, 시작인덱스, 끝인덱스) : 배열을 특정값으로 한번에 변환. 시작과 끝인덱스 사용은 선택.
+- copyWithin(복사를 시작할 위치, 복사대상의 시작점, 복사대상의 끝점) : 특정위치에 값을 연속적으로 복사
+
 
 *\* es6 지원상황 : [https://kangax.github.io/compat-table/es6/*](https://kangax.github.io/compat-table/es6/)*
 
