@@ -1,21 +1,27 @@
-#NPM
+# NPM
+
 Node.js 기반 패키지 모듈들을 관리하는 도구.
 
-##설치
+## 설치
+
 1. https://nodejs.org 에서 node.js설치
 2. node와 npm 버전확인.
+
 ```
 //버전을 확인함으로서 설치된 것을 확인.
-> node -v 
+> node -v
 > npm -v
 ```
+
 3. 모듈을 관리하기 위해, package.json 설정
+
 ```
 > npm init //package.json 파일 생성
 > npm init -y //기본선택 값으로, 질의없이 바로 package.json 생성
 ```
 
-##NPM 명령어
+## NPM 명령어
+
 ```
 > npm install [모듈명]
 > npm i (축약어)
@@ -25,8 +31,10 @@ Node.js 기반 패키지 모듈들을 관리하는 도구.
 > npm uninstall [모듈명] //설치된 모듈삭제
 ```
 
-##package.json
-* "script" : {} 에 필요한 명령어를 정의할 수 있음.
+## package.json
+
+- "script" : {} 에 필요한 명령어를 정의할 수 있음.
+
 ```javascript
 {
   "name": "webpack-test",
@@ -53,4 +61,5 @@ Node.js 기반 패키지 모듈들을 관리하는 도구.
   }
 }
 ```
-*\* package.json만 있으면, 다른 환경에 세팅을 할 경우에, npm install 만으로 필요한 모듈 및 라이브러리를 한번에 설치할 수 있음.*
+
+_\* package.json만 있으면, 다른 환경에 세팅을 할 경우에, npm install 만으로 필요한 모듈 및 라이브러리를 한번에 설치할 수 있음._
